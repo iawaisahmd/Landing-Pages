@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ARK Desig — Luxury Design-Build Remodeling in Bergen County, NJ</title>
+<meta name="description" content="ARK Desig is a luxury design-build remodeling studio serving Bergen County, New Jersey. Kitchen, bathroom, and whole-home renovations crafted around your lifestyle." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================
+     RESET & BASE
+  ============================================ */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{
+    font-family:'Inter',sans-serif;
+    background:#F8F7F2;
+    color:#444444;
+    line-height:1.7;
+    font-weight:400;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;height:auto}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+  /* Grain overlay */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9999;
+    opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+
+  /* ============================================
+     TYPOGRAPHY
+  ============================================ */
+  h1,h2,h3,h4,h5{
+    font-family:'Cormorant Garamond',serif;
+    color:#121212;
+    font-weight:400;
+    line-height:1.1;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:0.72rem;
+    font-weight:500;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:#C7A86D;
+    display:inline-flex;
+    align-items:center;
+    gap:0.85rem;
+  }
+  .eyebrow::before{
+    content:'';
+    width:32px;
+    height:1px;
+    background:#C7A86D;
+    display:inline-block;
+  }
+  .eyebrow.center::after{
+    content:'';
+    width:32px;
+    height:1px;
+    background:#C7A86D;
+    display:inline-block;
+  }
+
+  /* ============================================
+     LAYOUT
+  ============================================ */
+  .container{max-width:1400px;margin:0 auto;padding:0 2.5rem}
+  .container-wide{max-width:1600px;margin:0 auto;padding:0 2.5rem}
+  .container-narrow{max-width:860px;margin:0 auto;padding:0 2.5rem}
+  section{padding:8rem 0;position:relative}
+  @media(max-width:768px){
+    section{padding:5rem 0}
+    .container,.container-wide,.container-narrow{padding:0 1.5rem}
+  }
+
+  /* ============================================
+     BUTTONS
+  ============================================ */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.75rem;
+    padding:1.1rem 2.2rem;
+    font-size:0.78rem;
+    font-weight:500;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    transition:all 0.5s cubic-bezier(0.22,1,0.36,1);
+    position:relative;
+    overflow:hidden;
+    border-radius:0;
+  }
+  .btn-primary{
+    background:#121212;
+    color:#F8F7F2;
+  }
+  .btn-primary::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:#C7A86D;
+    transform:translateY(101%);
+    transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    z-index:0;
+  }
+  .btn-primary:hover::before{transform:translateY(0)}
+  .btn-primary span{position:relative;z-index:1}
+  .btn-primary:hover{color:#121212}
+
+  .btn-gold{
+    background:#C7A86D;
+    color:#121212;
+  }
+  .btn-gold::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:#121212;
+    transform:translateY(101%);
+    transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    z-index:0;
+  }
+  .btn-gold:hover::before{transform:translateY(0)}
+  .btn-gold span{position:relative;z-index:1}
+  .btn-gold:hover{color:#F8F7F2}
+
+  .btn-outline{
+    background:transparent;
+    color:#121212;
+    border:1px solid #121212;
+  }
+  .btn-outline::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:#121212;
+    transform:translateY(101%);
+    transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    z-index:0;
+  }
+  .btn-outline:hover::before{transform:translateY(0)}
+  .btn-outline span{position:relative;z-index:1}
+  .btn-outline:hover{color:#F8F7F2}
+
+  .btn-light{
+    background:transparent;
+    color:#F8F7F2;
+    border:1px solid rgba(248,247,242,0.4);
+  }
+  .btn-light::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:#F8F7F2;
+    transform:translateY(101%);
+    transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    z-index:0;
+  }
+  .btn-light:hover::before{transform:translateY(0)}
+  .btn-light span{position:relative;z-index:1}
+  .btn-light:hover{color:#121212}
+
+  .link-arrow{
+    display:inline-flex;
+    align-items:center;
+    gap:0.65rem;
+    font-size:0.78rem;
+    font-weight:500;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#121212;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .link-arrow::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:100%;
+    height:1px;
+    background:#121212;
+    transform-origin:right;
+    transform:scaleX(0);
+    transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .link-arrow:hover::after{transform-origin:left;transform:scaleX(1)}
+  .link-arrow svg{transition:transform 0.4s ease}
+  .link-arrow:hover svg{transform:translateX(4px)}
+  .link-arrow.light{color:#F8F7F2}
+  .link-arrow.light::after{background:#F8F7F2}
+  .link-arrow.gold{color:#C7A86D}
+  .link-arrow.gold::after{background:#C7A86D}
+
+  /* ============================================
+     HEADER
+  ============================================ */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:1000;
+    padding:1.75rem 2.5rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:all 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  header.scrolled{
+    background:rgba(248,247,242,0.92);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    padding:1.1rem 2.5rem;
+    border-bottom:1px solid #EAE6DE;
+  }
+  .logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem;
+    font-weight:500;
+    letter-spacing:0.25em;
+    color:#F8F7F2;
+    transition:color 0.4s ease;
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .logo-mark{
+    width:28px;height:28px;
+    border:1px solid currentColor;
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.7rem;
+    letter-spacing:0;
+  }
+  header.scrolled .logo{color:#121212}
+  nav ul{
+    display:flex;
+    gap:2.5rem;
+    list-style:none;
+  }
+  nav a{
+    font-size:0.78rem;
+    font-weight:500;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#F8F7F2;
+    transition:color 0.4s ease;
+    position:relative;
+    padding:0.5rem 0;
+  }
+  header.scrolled nav a{color:#121212}
+  nav a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0;height:1px;
+    background:#C7A86D;
+    transition:width 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  nav a:hover::after{width:100%}
+  nav a:hover{color:#C7A86D}
+  .header-cta{
+    font-size:0.74rem;
+    font-weight:500;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#121212;
+    background:#C7A86D;
+    padding:0.85rem 1.6rem;
+    transition:all 0.4s ease;
+  }
+  .header-cta:hover{background:#121212;color:#F8F7F2}
+  .menu-toggle{display:none;font-size:1.5rem;color:#F8F7F2;background:none}
+  header.scrolled .menu-toggle{color:#121212}
+
+  @media(max-width:980px){
+    nav,.header-cta{display:none}
+    .menu-toggle{display:block}
+  }
+
+  /* Mobile menu */
+  .mobile-menu{
+    position:fixed;
+    inset:0;
+    background:#121212;
+    z-index:999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2rem;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.5s ease;
+  }
+  .mobile-menu.open{opacity:1;pointer-events:all}
+  .mobile-menu a{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2rem;
+    color:#F8F7F2;
+  }
+  .mobile-menu .close{
+    position:absolute;
+    top:1.75rem;right:2.5rem;
+    font-size:1.5rem;
+    color:#F8F7F2;
+    background:none;
+  }
+
+  /* ============================================
+     HERO
+  ============================================ */
+  .hero{
+    height:100vh;
+    min-height:720px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:0 0 5rem;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+  .hero-bg::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(18,18,18,0.55) 0%,rgba(18,18,18,0.25) 40%,rgba(18,18,18,0.75) 100%);
+  }
+  .hero-bg img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transform:scale(1.08);
+    animation:heroScale 4s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  @keyframes heroScale{
+    to{transform:scale(1)}
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+  }
+  .hero-inner{
+    max-width:1400px;
+    margin:0 auto;
+    padding:0 2.5rem;
+  }
+  .hero-eyebrow{
+    color:#C7A86D;
+    margin-bottom:2rem;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp 1s 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .hero-eyebrow::before{background:#C7A86D}
+  .hero h1{
+    color:#F8F7F2;
+    font-size:clamp(2.8rem,7vw,6.5rem);
+    font-weight:300;
+    line-height:1.05;
+    max-width:1100px;
+    margin-bottom:2rem;
+  }
+  .hero h1 .line{
+    display:block;
+    overflow:hidden;
+  }
+  .hero h1 .line span{
+    display:inline-block;
+    transform:translateY(110%);
+    animation:lineReveal 1.2s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .hero h1 .line:nth-child(1) span{animation-delay:0.5s}
+  .hero h1 .line:nth-child(2) span{animation-delay:0.7s}
+  .hero h1 .line:nth-child(3) span{animation-delay:0.9s}
+  .hero h1 em{
+    font-style:italic;
+    color:#C7A86D;
+    font-weight:400;
+  }
+  @keyframes lineReveal{
+    to{transform:translateY(0)}
+  }
+  .hero-sub{
+    color:rgba(248,247,242,0.85);
+    font-size:1.05rem;
+    font-weight:300;
+    max-width:540px;
+    margin-bottom:2.5rem;
+    line-height:1.7;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp 1s 1.2s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+    margin-bottom:3.5rem;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp 1s 1.4s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  @keyframes fadeUp{
+    to{opacity:1;transform:translateY(0)}
+  }
+  .hero-trust{
+    display:flex;
+    gap:2.5rem;
+    flex-wrap:wrap;
+    color:rgba(248,247,242,0.75);
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-weight:400;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp 1s 1.6s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .hero-trust span{
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .hero-trust .stars{color:#C7A86D;letter-spacing:0.1em}
+  .hero-scroll{
+    position:absolute;
+    bottom:2rem;
+    right:2.5rem;
+    z-index:3;
+    color:rgba(248,247,242,0.6);
+    font-size:0.7rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    writing-mode:vertical-rl;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+  }
+  .hero-scroll::after{
+    content:'';
+    width:1px;
+    height:60px;
+    background:rgba(248,247,242,0.4);
+    animation:scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%,100%{transform:scaleY(0.3);transform-origin:top}
+    50%{transform:scaleY(1);transform-origin:top}
+  }
+
+  /* ============================================
+     MARQUEE
+  ============================================ */
+  .marquee{
+    background:#121212;
+    color:#F8F7F2;
+    padding:1.5rem 0;
+    overflow:hidden;
+    border-top:1px solid rgba(199,168,109,0.2);
+    border-bottom:1px solid rgba(199,168,109,0.2);
+  }
+  .marquee-track{
+    display:flex;
+    gap:3rem;
+    white-space:nowrap;
+    animation:marquee 40s linear infinite;
+    width:max-content;
+  }
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee-item{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    font-size:0.85rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    font-weight:400;
+  }
+  .marquee-item .dot{
+    width:5px;height:5px;
+    background:#C7A86D;
+    border-radius:50%;
+  }
+  .marquee-item .star{color:#C7A86D}
+  @keyframes marquee{
+    to{transform:translateX(-50%)}
+  }
+
+  /* ============================================
+     ABOUT
+  ============================================ */
+  .about{
+    background:#F8F7F2;
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6rem;
+    align-items:center;
+  }
+  .about-image-wrap{
+    position:relative;
+    aspect-ratio:4/5;
+    overflow:hidden;
+  }
+  .about-image-wrap img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform 1.2s cubic-bezier(0.22,1,0.36,1);
+  }
+  .about-image-wrap:hover img{transform:scale(1.04)}
+  .about-image-tag{
+    position:absolute;
+    bottom:1.5rem;left:1.5rem;
+    background:#F8F7F2;
+    padding:1rem 1.5rem;
+    border-left:2px solid #C7A86D;
+  }
+  .about-image-tag .small{
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#999;
+    margin-bottom:0.25rem;
+  }
+  .about-image-tag .name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.3rem;
+    color:#121212;
+  }
+  .about-content h2{
+    font-size:clamp(2.2rem,4.5vw,4rem);
+    font-weight:300;
+    margin:1.5rem 0 2rem;
+    line-height:1.1;
+  }
+  .about-content h2 em{
+    font-style:italic;
+    color:#C7A86D;
+  }
+  .about-content p{
+    color:#444;
+    font-size:1.02rem;
+    margin-bottom:1.5rem;
+    max-width:520px;
+  }
+  .about-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2rem;
+    margin:3rem 0;
+    padding:2.5rem 0;
+    border-top:1px solid #EAE6DE;
+    border-bottom:1px solid #EAE6DE;
+  }
+  .stat-num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:3rem;
+    font-weight:400;
+    color:#121212;
+    line-height:1;
+    margin-bottom:0.5rem;
+  }
+  .stat-num sup{font-size:1rem;color:#C7A86D;vertical-align:super}
+  .stat-label{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#999;
+  }
+  @media(max-width:900px){
+    .about-grid{grid-template-columns:1fr;gap:3rem}
+    .about-stats{grid-template-columns:repeat(3,1fr);gap:1rem}
+    .stat-num{font-size:2.2rem}
+  }
+
+  /* ============================================
+     PROCESS
+  ============================================ */
+  .process{
+    background:#121212;
+    color:#F8F7F2;
+    overflow:hidden;
+  }
+  .process .eyebrow{color:#C7A86D}
+  .process .eyebrow::before{background:#C7A86D}
+  .process-header{
+    text-align:center;
+    margin-bottom:5rem;
+  }
+  .process-header h2{
+    color:#F8F7F2;
+    font-size:clamp(2.2rem,4.5vw,4rem);
+    font-weight:300;
+    margin-top:1.5rem;
+  }
+  .process-header h2 em{font-style:italic;color:#C7A86D}
+  .process-header p{
+    color:rgba(248,247,242,0.7);
+    max-width:560px;
+    margin:1.5rem auto 0;
+  }
+  .timeline{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:1rem;
+  }
+  .timeline::before{
+    content:'';
+    position:absolute;
+    top:42px;
+    left:5%;
+    right:5%;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(199,168,109,0.4) 10%,rgba(199,168,109,0.4) 90%,transparent);
+  }
+  .timeline-step{
+    position:relative;
+    text-align:center;
+    padding:0 0.5rem;
+  }
+  .step-icon{
+    width:84px;height:84px;
+    margin:0 auto 1.5rem;
+    border:1px solid rgba(199,168,109,0.4);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#121212;
+    position:relative;
+    z-index:2;
+    transition:all 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .timeline-step:hover .step-icon{
+    border-color:#C7A86D;
+    background:rgba(199,168,109,0.08);
+    transform:translateY(-4px);
+  }
+  .step-icon svg{
+    width:32px;height:32px;
+    stroke:#C7A86D;
+    fill:none;
+    stroke-width:1;
+  }
+  .step-num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:0.85rem;
+    color:#C7A86D;
+    letter-spacing:0.2em;
+    margin-bottom:0.5rem;
+  }
+  .step-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.4rem;
+    color:#F8F7F2;
+    margin-bottom:0.75rem;
+    font-weight:400;
+  }
+  .step-desc{
+    font-size:0.85rem;
+    color:rgba(248,247,242,0.6);
+    line-height:1.6;
+  }
+  @media(max-width:1000px){
+    .timeline{grid-template-columns:repeat(3,1fr);gap:2.5rem 1rem}
+    .timeline::before{display:none}
+  }
+  @media(max-width:600px){
+    .timeline{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ============================================
+     SERVICES
+  ============================================ */
+  .services{background:#F8F7F2}
+  .services-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:4rem;
+    gap:2rem;
+    flex-wrap:wrap;
+  }
+  .services-header h2{
+    font-size:clamp(2.2rem,4.5vw,4rem);
+    font-weight:300;
+    max-width:700px;
+    margin-top:1.5rem;
+    line-height:1.1;
+  }
+  .services-header h2 em{font-style:italic;color:#C7A86D}
+  .services-header p{
+    max-width:380px;
+    color:#666;
+  }
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2rem;
+  }
+  .service-card{
+    position:relative;
+    background:#fff;
+    overflow:hidden;
+    transition:all 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 30px 60px -20px rgba(18,18,18,0.15);
+  }
+  .service-img{
+    aspect-ratio:4/5;
+    overflow:hidden;
+    position:relative;
+  }
+  .service-img img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform 1s cubic-bezier(0.22,1,0.36,1);
+  }
+  .service-card:hover .service-img img{transform:scale(1.08)}
+  .service-img::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,transparent 50%,rgba(18,18,18,0.4) 100%);
+  }
+  .service-num{
+    position:absolute;
+    top:1.5rem;left:1.5rem;
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.2rem;
+    color:#F8F7F2;
+    z-index:2;
+    letter-spacing:0.1em;
+  }
+  .service-tag{
+    position:absolute;
+    top:1.5rem;right:1.5rem;
+    background:rgba(248,247,242,0.95);
+    padding:0.4rem 0.85rem;
+    font-size:0.65rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#121212;
+    z-index:2;
+  }
+  .service-content{
+    padding:2rem 1.75rem 2.25rem;
+  }
+  .service-content h3{
+    font-size:1.85rem;
+    font-weight:400;
+    margin-bottom:0.85rem;
+  }
+  .service-content p{
+    color:#666;
+    font-size:0.92rem;
+    margin-bottom:1.5rem;
+  }
+  @media(max-width:900px){
+    .services-grid{grid-template-columns:1fr;gap:1.5rem}
+  }
+
+  /* ============================================
+     PROJECTS
+  ============================================ */
+  .projects{
+    background:#F8F7F2;
+    padding-top:4rem;
+  }
+  .projects-header{
+    text-align:center;
+    margin-bottom:4rem;
+  }
+  .projects-header h2{
+    font-size:clamp(2.2rem,4.5vw,4rem);
+    font-weight:300;
+    margin-top:1.5rem;
+  }
+  .projects-header h2 em{font-style:italic;color:#C7A86D}
+  .projects-header p{
+    max-width:560px;
+    margin:1.5rem auto 0;
+    color:#666;
+  }
+  .filter-bar{
+    display:flex;
+    justify-content:center;
+    gap:0.5rem;
+    margin-bottom:4rem;
+    flex-wrap:wrap;
+  }
+  .filter-btn{
+    padding:0.7rem 1.5rem;
+    font-size:0.74rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#666;
+    border:1px solid #EAE6DE;
+    background:transparent;
+    transition:all 0.4s ease;
+  }
+  .filter-btn:hover{color:#121212;border-color:#121212}
+  .filter-btn.active{
+    background:#121212;
+    color:#F8F7F2;
+    border-color:#121212;
+  }
+
+  .project{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+    align-items:center;
+    margin-bottom:7rem;
+  }
+  .project:nth-child(even) .project-images{order:2}
+  .project:nth-child(even) .project-info{order:1}
+  .project-images{
+    position:relative;
+  }
+  .ba-slider{
+    position:relative;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    cursor:ew-resize;
+    user-select:none;
+  }
+  .ba-img{
+    position:absolute;
+    inset:0;
+    width:100%;height:100%;
+  }
+  .ba-img img{
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+  .ba-after{
+    clip-path:inset(0 0 0 50%);
+  }
+  .ba-handle{
+    position:absolute;
+    top:0;bottom:0;
+    left:50%;
+    width:2px;
+    background:#F8F7F2;
+    transform:translateX(-50%);
+    pointer-events:none;
+    z-index:5;
+  }
+  .ba-handle::after{
+    content:'';
+    position:absolute;
+    top:50%;left:50%;
+    width:44px;height:44px;
+    border:2px solid #F8F7F2;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(18,18,18,0.4);
+    backdrop-filter:blur(4px);
+  }
+  .ba-handle::before{
+    content:'⇄';
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    color:#F8F7F2;
+    font-size:1rem;
+    z-index:1;
+  }
+  .ba-label{
+    position:absolute;
+    top:1rem;
+    padding:0.4rem 0.85rem;
+    background:rgba(18,18,18,0.6);
+    backdrop-filter:blur(6px);
+    color:#F8F7F2;
+    font-size:0.65rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    z-index:4;
+  }
+  .ba-label-before{left:1rem}
+  .ba-label-after{right:1rem}
+  .project-thumbs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0.75rem;
+    margin-top:0.75rem;
+  }
+  .project-thumb{
+    aspect-ratio:1;
+    overflow:hidden;
+    cursor:pointer;
+    position:relative;
+  }
+  .project-thumb img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform 0.6s ease;
+    filter:grayscale(30%);
+  }
+  .project-thumb:hover img{transform:scale(1.1);filter:grayscale(0)}
+  .project-info .project-meta{
+    display:flex;
+    gap:2rem;
+    margin-bottom:1.5rem;
+    font-size:0.72rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#999;
+  }
+  .project-info .project-meta span{
+    display:flex;
+    flex-direction:column;
+    gap:0.3rem;
+  }
+  .project-info .project-meta strong{
+    color:#121212;
+    font-weight:500;
+  }
+  .project-info h3{
+    font-size:clamp(2rem,3.5vw,3rem);
+    font-weight:300;
+    line-height:1.1;
+    margin-bottom:1.5rem;
+  }
+  .project-info h3 em{font-style:italic;color:#C7A86D}
+  .project-story{
+    color:#666;
+    margin-bottom:2rem;
+    font-size:0.98rem;
+  }
+  .project-details{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1rem 2rem;
+    margin-bottom:2rem;
+    padding:1.5rem 0;
+    border-top:1px solid #EAE6DE;
+    border-bottom:1px solid #EAE6DE;
+  }
+  .project-detail-label{
+    font-size:0.68rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#999;
+    margin-bottom:0.3rem;
+  }
+  .project-detail-val{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem;
+    color:#121212;
+  }
+  @media(max-width:900px){
+    .project{grid-template-columns:1fr;gap:2rem;margin-bottom:4rem}
+    .project:nth-child(even) .project-images{order:1}
+    .project:nth-child(even) .project-info{order:2}
+  }
+
+  /* ============================================
+     REVIEWS
+  ============================================ */
+  .reviews{
+    background:#F8F7F2;
+    position:relative;
+  }
+  .reviews-header{
+    text-align:center;
+    margin-bottom:4rem;
+  }
+  .reviews-header h2{
+    font-size:clamp(2.2rem,4.5vw,4rem);
+    font-weight:300;
+    margin-top:1.5rem;
+  }
+  .reviews-header h2 em{font-style:italic;color:#C7A86D}
+  .google-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:0.75rem;
+    margin-top:1.5rem;
+    padding:0.6rem 1.25rem;
+    background:#fff;
+    border:1px solid #EAE6DE;
+  }
+  .google-badge .g-logo{
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:1.1rem;
+    letter-spacing:-0.02em;
+  }
+  .google-badge .g-logo .b{color:#4285F4}
+  .google-badge .g-logo .r{color:#EA4335}
+  .google-badge .g-logo .y{color:#FBBC05}
+  .google-badge .g-logo .g{color:#34A853}
+  .google-badge .rating{
+    display:flex;
+    align-items:center;
+    gap:0.4rem;
+    font-size:0.85rem;
+    color:#121212;
+  }
+  .google-badge .stars{color:#FBBC05;letter-spacing:0.1em}
+  .reviews-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
+    margin-bottom:3rem;
+  }
+  .review-card{
+    background:#fff;
+    padding:2.25rem 2rem;
+    border:1px solid #EAE6DE;
+    transition:all 0.4s ease;
+    position:relative;
+  }
+  .review-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 50px -20px rgba(18,18,18,0.1);
+    border-color:#C7A86D;
+  }
+  .review-quote{
+    font-family:'Cormorant Garamond',serif;
+    font-size:3rem;
+    color:#C7A86D;
+    line-height:1;
+    margin-bottom:0.5rem;
+    opacity:0.4;
+  }
+  .review-stars{
+    color:#FBBC05;
+    letter-spacing:0.15em;
+    margin-bottom:1rem;
+    font-size:0.9rem;
+  }
+  .review-text{
+    color:#444;
+    font-size:0.95rem;
+    line-height:1.7;
+    margin-bottom:1.5rem;
+    font-style:italic;
+  }
+  .review-client{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    padding-top:1.5rem;
+    border-top:1px solid #EAE6DE;
+  }
+  .review-avatar{
+    width:48px;height:48px;
+    border-radius:50%;
+    overflow:hidden;
+    flex-shrink:0;
+  }
+  .review-avatar img{width:100%;height:100%;object-fit:cover}
+  .review-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.15rem;
+    color:#121212;
+    margin-bottom:0.15rem;
+  }
+  .review-project{
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:#999;
+  }
+  .reviews-cta{
+    text-align:center;
+  }
+  @media(max-width:900px){
+    .reviews-grid{grid-template-columns:1fr}
+  }
+
+  /* ============================================
+     BLOG
+  ============================================ */
+  .blog{background:#F8F7F2}
+  .blog-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:4rem;
+    gap:2rem;
+    flex-wrap:wrap;
+  }
+  .blog-header h2{
+    font-size:clamp(2.2rem,4.5vw,4rem);
+    font-weight:300;
+    margin-top:1.5rem;
+    line-height:1.1;
+  }
+  .blog-header h2 em{font-style:italic;color:#C7A86D}
+  .blog-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2rem;
+  }
+  .blog-card{
+    cursor:pointer;
+    transition:all 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .blog-card:hover{transform:translateY(-6px)}
+  .blog-img{
+    aspect-ratio:4/3;
+    overflow:hidden;
+    margin-bottom:1.5rem;
+    position:relative;
+  }
+  .blog-img img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform 1s cubic-bezier(0.22,1,0.36,1);
+  }
+  .blog-card:hover .blog-img img{transform:scale(1.08)}
+  .blog-cat{
+    position:absolute;
+    top:1rem;left:1rem;
+    background:#F8F7F2;
+    padding:0.4rem 0.85rem;
+    font-size:0.65rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#121212;
+  }
+  .blog-meta{
+    display:flex;
+    gap:1.5rem;
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:#999;
+    margin-bottom:0.85rem;
+  }
+  .blog-meta span{display:flex;align-items:center;gap:0.4rem}
+  .blog-card h3{
+    font-size:1.6rem;
+    font-weight:400;
+    line-height:1.2;
+    margin-bottom:0.85rem;
+    transition:color 0.3s ease;
+  }
+  .blog-card:hover h3{color:#C7A86D}
+  .blog-card p{
+    color:#666;
+    font-size:0.92rem;
+    margin-bottom:1rem;
+  }
+  @media(max-width:900px){
+    .blog-grid{grid-template-columns:1fr;gap:2.5rem}
+  }
+
+  /* ============================================
+     FINAL CTA
+  ============================================ */
+  .final-cta{
+    background:#121212;
+    color:#F8F7F2;
+    text-align:center;
+    padding:9rem 2.5rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .final-cta::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at center,rgba(199,168,109,0.12) 0%,transparent 60%);
+  }
+  .final-cta-content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .final-cta .eyebrow{color:#C7A86D}
+  .final-cta .eyebrow::before{background:#C7A86D}
+  .final-cta h2{
+    color:#F8F7F2;
+    font-size:clamp(2.5rem,6vw,5.5rem);
+    font-weight:300;
+    line-height:1.05;
+    margin:1.5rem 0 1.5rem;
+  }
+  .final-cta h2 em{font-style:italic;color:#C7A86D}
+  .final-cta p{
+    color:rgba(248,247,242,0.7);
+    font-size:1.05rem;
+    max-width:520px;
+    margin:0 auto 2.5rem;
+  }
+
+  /* ============================================
+     CONTACT
+  ============================================ */
+  .contact{
+    background:#F8F7F2;
+    padding:0;
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:680px;
+  }
+  .contact-img{
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-img img{
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+  .contact-img::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(18,18,18,0.2),rgba(18,18,18,0.4));
+  }
+  .contact-img-info{
+    position:absolute;
+    bottom:2.5rem;left:2.5rem;right:2.5rem;
+    color:#F8F7F2;
+    z-index:2;
+  }
+  .contact-img-info h3{
+    color:#F8F7F2;
+    font-size:2rem;
+    font-weight:300;
+    margin-bottom:1rem;
+  }
+  .contact-img-info p{
+    color:rgba(248,247,242,0.85);
+    font-size:0.95rem;
+  }
+  .contact-form-wrap{
+    padding:5rem 4rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .contact-form-wrap .eyebrow{margin-bottom:1.5rem}
+  .contact-form-wrap h2{
+    font-size:clamp(2rem,3.5vw,3rem);
+    font-weight:300;
+    margin-bottom:1rem;
+    line-height:1.1;
+  }
+  .contact-form-wrap h2 em{font-style:italic;color:#C7A86D}
+  .contact-form-wrap > p{
+    color:#666;
+    margin-bottom:2.5rem;
+    font-size:0.95rem;
+  }
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.25rem;
+    margin-bottom:1.25rem;
+  }
+  .form-group{
+    margin-bottom:1.25rem;
+    position:relative;
+  }
+  .form-group label{
+    display:block;
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#999;
+    margin-bottom:0.5rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea{
+    width:100%;
+    padding:0.85rem 0;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid #EAE6DE;
+    font-family:'Inter',sans-serif;
+    font-size:0.95rem;
+    color:#121212;
+    transition:border-color 0.3s ease;
+    outline:none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus{
+    border-bottom-color:#C7A86D;
+  }
+  .form-group textarea{
+    resize:vertical;
+    min-height:80px;
+  }
+  .form-group select{
+    cursor:pointer;
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23121212' stroke-width='1' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 0.5rem center;
+    padding-right:1.5rem;
+  }
+  .response-time{
+    display:flex;
+    align-items:center;
+    gap:0.75rem;
+    margin:1.5rem 0;
+    padding:1rem 1.25rem;
+    background:#fff;
+    border-left:2px solid #C7A86D;
+    font-size:0.85rem;
+    color:#666;
+  }
+  .response-time svg{width:18px;height:18px;stroke:#C7A86D;fill:none;stroke-width:1.5}
+  .response-time strong{color:#121212;font-weight:500}
+  .contact-info-row{
+    margin-top:2.5rem;
+    padding-top:2rem;
+    border-top:1px solid #EAE6DE;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.5rem;
+  }
+  .contact-info-item .label{
+    font-size:0.68rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#999;
+    margin-bottom:0.4rem;
+  }
+  .contact-info-item .val{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem;
+    color:#121212;
+  }
+  @media(max-width:900px){
+    .contact-grid{grid-template-columns:1fr}
+    .contact-img{aspect-ratio:16/9}
+    .contact-form-wrap{padding:3rem 1.5rem}
+    .form-row{grid-template-columns:1fr}
+  }
+
+  /* ============================================
+     FOOTER
+  ============================================ */
+  footer{
+    background:#0a0a0a;
+    color:#F8F7F2;
+    padding:6rem 2.5rem 2rem;
+  }
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;
+    gap:3rem;
+    padding-bottom:4rem;
+    border-bottom:1px solid rgba(248,247,242,0.1);
+    max-width:1400px;
+    margin:0 auto;
+  }
+  .footer-brand .logo{color:#F8F7F2;margin-bottom:1.5rem}
+  .footer-brand p{
+    color:rgba(248,247,242,0.6);
+    font-size:0.92rem;
+    max-width:320px;
+    margin-bottom:2rem;
+  }
+  .footer-social{
+    display:flex;
+    gap:0.75rem;
+  }
+  .footer-social a{
+    width:40px;height:40px;
+    border:1px solid rgba(248,247,242,0.2);
+    display:flex;align-items:center;justify-content:center;
+    transition:all 0.3s ease;
+  }
+  .footer-social a:hover{
+    border-color:#C7A86D;
+    background:#C7A86D;
+    color:#121212;
+  }
+  .footer-social svg{width:16px;height:16px;fill:currentColor}
+  .footer-col h4{
+    color:#F8F7F2;
+    font-family:'Inter',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    font-weight:500;
+    margin-bottom:1.5rem;
+    color:#C7A86D;
+  }
+  .footer-col ul{list-style:none}
+  .footer-col ul li{margin-bottom:0.75rem}
+  .footer-col ul a{
+    color:rgba(248,247,242,0.6);
+    font-size:0.9rem;
+    transition:color 0.3s ease;
+    position:relative;
+    padding-left:0;
+  }
+  .footer-col ul a:hover{color:#C7A86D;padding-left:8px}
+  .footer-bottom{
+    max-width:1400px;
+    margin:0 auto;
+    padding-top:2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:1rem;
+  }
+  .footer-bottom p{
+    color:rgba(248,247,242,0.4);
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+  }
+  .footer-bottom .legal{
+    display:flex;
+    gap:2rem;
+  }
+  .footer-bottom .legal a{
+    color:rgba(248,247,242,0.4);
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    transition:color 0.3s ease;
+  }
+  .footer-bottom .legal a:hover{color:#C7A86D}
+  @media(max-width:900px){
+    .footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+    .footer-brand{grid-column:1/-1}
+  }
+
+  /* ============================================
+     REVEAL ANIMATIONS
+  ============================================ */
+  [data-reveal]{
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity 1s cubic-bezier(0.22,1,0.36,1),transform 1s cubic-bezier(0.22,1,0.36,1);
+  }
+  [data-reveal].in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+  [data-reveal-delay="1"]{transition-delay:0.1s}
+  [data-reveal-delay="2"]{transition-delay:0.2s}
+  [data-reveal-delay="3"]{transition-delay:0.3s}
+  [data-reveal-delay="4"]{transition-delay:0.4s}
+  [data-reveal-delay="5"]{transition-delay:0.5s}
+
+  /* Custom cursor */
+  .cursor{
+    position:fixed;
+    width:8px;height:8px;
+    background:#C7A86D;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:10000;
+    transform:translate(-50%,-50%);
+    transition:width 0.3s ease,height 0.3s ease,background 0.3s ease;
+    mix-blend-mode:difference;
+  }
+  .cursor.hover{
+    width:40px;height:40px;
+    background:rgba(199,168,109,0.3);
+  }
+  @media(max-width:900px){.cursor{display:none}}
+
+  /* Hidden project filter */
+  .project.hidden{
+    display:none;
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+
+<!-- Header -->
+<header id="header">
+  <a href="#" class="logo">
+    <span class="logo-mark">A</span>
+    ARK DESIG
+  </a>
+  <nav>
+    <ul>
+      <li><a href="#about">Studio</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Journal</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <a href="#contact" class="header-cta">Schedule Consultation</a>
+  <button class="menu-toggle" id="menuToggle">☰</button>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose">✕</button>
+  <a href="#about">Studio</a>
+  <a href="#process">Process</a>
+  <a href="#services">Services</a>
+  <a href="#projects">Projects</a>
+  <a href="#blog">Journal</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2000&q=80" alt="Luxury kitchen with marble island and natural light" />
+  </div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-eyebrow eyebrow">Bergen County · Design-Build Studio</div>
+      <h1>
+        <span class="line"><span>Luxury Remodeling</span></span>
+        <span class="line"><span>Designed Around</span></span>
+        <span class="line"><span><em>Your Lifestyle</em></span></span>
+      </h1>
+      <p class="hero-sub">A boutique design-build studio crafting kitchens, baths, and whole-home renovations for discerning homeowners across Bergen County, New Jersey.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-gold"><span>Schedule a Consultation</span></a>
+        <a href="#projects" class="btn btn-light"><span>Explore Our Work</span></a>
+      </div>
+      <div class="hero-trust">
+        <span><span class="stars">★★★★★</span> Google Rated</span>
+        <span>Licensed & Insured</span>
+        <span>5+ Years Experience</span>
+        <span>Luxury Craftsmanship</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="star">★★★★★</span> Google Rated</div>
+    <div class="marquee-item"><span class="dot"></span> Licensed & Insured</div>
+    <div class="marquee-item"><span class="dot"></span> Premium Craftsmanship</div>
+    <div class="marquee-item"><span class="dot"></span> Serving Bergen County</div>
+    <div class="marquee-item"><span class="dot"></span> 5+ Years Experience</div>
+    <div class="marquee-item"><span class="dot"></span> Design-Build Experts</div>
+    <div class="marquee-item"><span class="dot"></span> Warranty Included</div>
+    <div class="marquee-item"><span class="dot"></span> Complimentary Consultation</div>
+    <!-- duplicate -->
+    <div class="marquee-item"><span class="star">★★★★★</span> Google Rated</div>
+    <div class="marquee-item"><span class="dot"></span> Licensed & Insured</div>
+    <div class="marquee-item"><span class="dot"></span> Premium Craftsmanship</div>
+    <div class="marquee-item"><span class="dot"></span> Serving Bergen County</div>
+    <div class="marquee-item"><span class="dot"></span> 5+ Years Experience</div>
+    <div class="marquee-item"><span class="dot"></span> Design-Build Experts</div>
+    <div class="marquee-item"><span class="dot"></span> Warranty Included</div>
+    <div class="marquee-item"><span class="dot"></span> Complimentary Consultation</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap" data-reveal>
+        <img src="https://images.unsplash.com/photo-1567531460820-207a57840c98?auto=format&fit=crop&w=1200&q=80" alt="ARK Desig principal designer in studio" />
+        <div class="about-image-tag">
+          <div class="small">Principal Designer</div>
+          <div class="name">Adrian R. Kessler</div>
+        </div>
+      </div>
+      <div class="about-content" data-reveal data-reveal-delay="2">
+        <div class="eyebrow">The Studio</div>
+        <h2>An atelier of <em>architectural</em> living, built for the way you actually live.</h2>
+        <p>ARK Desig was founded on a simple conviction: that a home should feel inevitable — composed, calm, and unmistakably yours. We approach each project as an exercise in restraint, allowing material, light, and proportion to do the speaking.</p>
+        <p>Our design-build model means a single point of accountability from first sketch to final walk-through. No translation lost between intention and execution. Just considered, lasting work.</p>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num" data-count="120">0<sup>+</sup></div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div>
+            <div class="stat-num" data-count="5">0<sup>+</sup></div>
+            <div class="stat-label">Years Studio</div>
+          </div>
+          <div>
+            <div class="stat-num" data-count="98">0<sup>%</sup></div>
+            <div class="stat-label">Client Satisfaction</div>
+          </div>
+        </div>
+        <a href="#contact" class="link-arrow">Meet Our Team
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="process-header" data-reveal>
+      <div class="eyebrow center">How We Work</div>
+      <h2>A deliberate path from <em>vision</em> to keys in hand.</h2>
+      <p>Six considered phases, each engineered to remove ambiguity and protect the integrity of your design.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-step" data-reveal>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div class="step-num">01</div>
+        <div class="step-title">Consultation</div>
+        <div class="step-desc">An honest conversation about scope, budget, and the life you imagine at home.</div>
+      </div>
+      <div class="timeline-step" data-reveal data-reveal-delay="1">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+        </div>
+        <div class="step-num">02</div>
+        <div class="step-title">Design</div>
+        <div class="step-desc">Material palettes, mood boards, and renderings refined until every detail resonates.</div>
+      </div>
+      <div class="timeline-step" data-reveal data-reveal-delay="2">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <div class="step-num">03</div>
+        <div class="step-title">Planning</div>
+        <div class="step-desc">Permits, procurement, and a construction schedule engineered around your life.</div>
+      </div>
+      <div class="timeline-step" data-reveal data-reveal-delay="3">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-6h6v6"/></svg>
+        </div>
+        <div class="step-num">04</div>
+        <div class="step-title">Construction</div>
+        <div class="step-desc">In-house craftsmen execute the design with daily oversight and weekly client reviews.</div>
+      </div>
+      <div class="timeline-step" data-reveal data-reveal-delay="4">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="step-num">05</div>
+        <div class="step-title">Final Walkthrough</div>
+        <div class="step-desc">A meticulous review against our shared standard — nothing leaves our hands unresolved.</div>
+      </div>
+      <div class="timeline-step" data-reveal data-reveal-delay="5">
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="step-num">06</div>
+        <div class="step-title">Warranty</div>
+        <div class="step-desc">A written warranty and a relationship that continues well beyond move-in day.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header" data-reveal>
+      <div>
+        <div class="eyebrow">What We Create</div>
+        <h2>Three disciplines, one <em>uncompromising</em> standard.</h2>
+      </div>
+      <p>From single-room transformations to comprehensive architectural renovations, every engagement receives the same exacting attention.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-reveal>
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80" alt="Luxury kitchen with custom cabinetry" />
+          <div class="service-num">01</div>
+          <div class="service-tag">Signature</div>
+        </div>
+        <div class="service-content">
+          <h3>Kitchen Remodeling</h3>
+          <p>Custom cabinetry, premium appliances, natural stone — kitchens engineered as the architectural heart of the home.</p>
+          <a href="#contact" class="link-arrow gold">Learn More
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card" data-reveal data-reveal-delay="1">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80" alt="Designer bathroom with stone shower" />
+          <div class="service-num">02</div>
+          <div class="service-tag">Sanctuary</div>
+        </div>
+        <div class="service-content">
+          <h3>Bathroom Remodeling</h3>
+          <p>Spa-grade sanctuaries composed in stone, oak, and brushed metal — a daily ritual of calm and restoration.</p>
+          <a href="#contact" class="link-arrow gold">Learn More
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card" data-reveal data-reveal-delay="2">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80" alt="Open-concept luxury living space" />
+          <div class="service-num">03</div>
+          <div class="service-tag">Comprehensive</div>
+        </div>
+        <div class="service-content">
+          <h3>Whole Home Renovation</h3>
+          <p>Architectural-scale transformations — reimagined floor plans, structural refinement, and a unified material language.</p>
+          <a href="#contact" class="link-arrow gold">Learn More
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="container-wide">
+    <div class="projects-header" data-reveal>
+      <div class="eyebrow center">Selected Work</div>
+      <h2>Projects composed with <em>intention</em>.</h2>
+      <p>A curated selection of recent work across Bergen County. Drag the slider to reveal the transformation.</p>
+    </div>
+    <div class="filter-bar" data-reveal>
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="kitchen">Kitchen</button>
+      <button class="filter-btn" data-filter="bathroom">Bathroom</button>
+      <button class="filter-btn" data-filter="whole-home">Whole Home</button>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project" data-category="kitchen" data-reveal>
+      <div class="project-images">
+        <div class="ba-slider" data-slider>
+          <div class="ba-img ba-before">
+            <img src="https://images.unsplash.com/photo-1556909190-eccf4a8bf97a?auto=format&fit=crop&w=1200&q=70" alt="Kitchen before renovation" />
+          </div>
+          <div class="ba-img ba-after">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80" alt="Kitchen after renovation" />
+          </div>
+          <div class="ba-label ba-label-before">Before</div>
+          <div class="ba-label ba-label-after">After</div>
+          <div class="ba-handle"></div>
+        </div>
+        <div class="project-thumbs">
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span>Location<strong>Alpine, NJ</strong></span>
+          <span>Type<strong>Kitchen</strong></span>
+          <span>Year<strong>2024</strong></span>
+        </div>
+        <h3>The <em>Marble</em> Kitchen</h3>
+        <p class="project-story">A closed-off colonial kitchen reimagined as an open, light-filled gathering space. Honed Calacatta marble, white oak cabinetry, and a sculptural island anchor the room — proportioned for both daily life and elegant entertaining.</p>
+        <div class="project-details">
+          <div>
+            <div class="project-detail-label">Scope</div>
+            <div class="project-detail-val">Full Kitchen Renovation</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Timeline</div>
+            <div class="project-detail-val">14 Weeks</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Materials</div>
+            <div class="project-detail-val">Calacatta Marble, White Oak</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Appliances</div>
+            <div class="project-detail-val">Gaggenau, Wolf</div>
+          </div>
+        </div>
+        <a href="#contact" class="link-arrow">Explore Project
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project" data-category="bathroom" data-reveal>
+      <div class="project-images">
+        <div class="ba-slider" data-slider>
+          <div class="ba-img ba-before">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=70" alt="Bathroom before renovation" />
+          </div>
+          <div class="ba-img ba-after">
+            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1200&q=80" alt="Bathroom after renovation" />
+          </div>
+          <div class="ba-label ba-label-before">Before</div>
+          <div class="ba-label ba-label-after">After</div>
+          <div class="ba-handle"></div>
+        </div>
+        <div class="project-thumbs">
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span>Location<strong>Saddle River, NJ</strong></span>
+          <span>Type<strong>Bathroom</strong></span>
+          <span>Year<strong>2024</strong></span>
+        </div>
+        <h3>The <em>Travertine</em> Bath</h3>
+        <p class="project-story">A primary bath reconceived as a private spa. Floor-to-ceiling travertine, a freestanding sculptural tub, and a wet room with linear drain — every element considered for both function and quiet beauty.</p>
+        <div class="project-details">
+          <div>
+            <div class="project-detail-label">Scope</div>
+            <div class="project-detail-val">Primary Suite Bath</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Timeline</div>
+            <div class="project-detail-val">9 Weeks</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Materials</div>
+            <div class="project-detail-val">Travertine, Brushed Brass</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Fixtures</div>
+            <div class="project-detail-val">Waterworks, Kallista</div>
+          </div>
+        </div>
+        <a href="#contact" class="link-arrow">Explore Project
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project" data-category="whole-home" data-reveal>
+      <div class="project-images">
+        <div class="ba-slider" data-slider>
+          <div class="ba-img ba-before">
+            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=70" alt="Living room before renovation" />
+          </div>
+          <div class="ba-img ba-after">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" alt="Living room after renovation" />
+          </div>
+          <div class="ba-label ba-label-before">Before</div>
+          <div class="ba-label ba-label-after">After</div>
+          <div class="ba-handle"></div>
+        </div>
+        <div class="project-thumbs">
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+          <div class="project-thumb"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=400&q=70" alt="Detail view" /></div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span>Location<strong>Englewood, NJ</strong></span>
+          <span>Type<strong>Whole Home</strong></span>
+          <span>Year<strong>2023</strong></span>
+        </div>
+        <h3>The <em>Heritage</em> Residence</h3>
+        <p class="project-story">A 1920s center-hall colonial reimagined for contemporary family life. Walls removed, flow restored, and a unified material palette of white oak, limestone, and plaster carried throughout — honoring the home's bones while quietly modernizing its soul.</p>
+        <div class="project-details">
+          <div>
+            <div class="project-detail-label">Scope</div>
+            <div class="project-detail-val">Full Home Renovation</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Timeline</div>
+            <div class="project-detail-val">7 Months</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Square Feet</div>
+            <div class="project-detail-val">4,800 sq ft</div>
+          </div>
+          <div>
+            <div class="project-detail-label">Disciplines</div>
+            <div class="project-detail-val">Architecture, Interiors</div>
+          </div>
+        </div>
+        <a href="#contact" class="link-arrow">Explore Project
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reviews-header" data-reveal>
+      <div class="eyebrow center">Client Voices</div>
+      <h2>Trusted by <em>discerning</em> homeowners.</h2>
+      <div class="google-badge">
+        <div class="g-logo"><span class="b">G</span><span class="r">o</span><span class="y">o</span><span class="b">g</span><span class="g">l</span><span class="r">e</span></div>
+        <div class="rating"><span class="stars">★★★★★</span> 5.0 · 47 reviews</div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card" data-reveal>
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">ARK Desig transformed our dated kitchen into a space that genuinely takes our breath away every morning. The level of craft and the calmness of their process was unlike any contractor we've worked with.</p>
+        <div class="review-client">
+          <div class="review-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Client portrait" /></div>
+          <div>
+            <div class="review-name">Margaret Chen</div>
+            <div class="review-project">Kitchen · Alpine, NJ</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card" data-reveal data-reveal-delay="1">
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">They treated our home with more care than we did. Every detail — from the stone selection to the final hardware — was considered, communicated, and executed flawlessly. Worth every penny.</p>
+        <div class="review-client">
+          <div class="review-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Client portrait" /></div>
+          <div>
+            <div class="review-name">David Harrington</div>
+            <div class="review-project">Whole Home · Saddle River</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card" data-reveal data-reveal-delay="2">
+        <div class="review-quote">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">What sets ARK apart is their design sensibility. They didn't just build a bathroom — they composed one. The proportions, the light, the materials. It feels like a five-star retreat in our own home.</p>
+        <div class="review-client">
+          <div class="review-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Client portrait" /></div>
+          <div>
+            <div class="review-name">Sofia Almeida</div>
+            <div class="review-project">Bathroom · Englewood</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-cta" data-reveal>
+      <a href="#" class="link-arrow">Read More Google Reviews
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="container">
+    <div class="blog-header" data-reveal>
+      <div>
+        <div class="eyebrow">Design Inspiration</div>
+        <h2>Notes from the <em>studio</em>.</h2>
+      </div>
+      <a href="#" class="link-arrow">View All Articles
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+      </a>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-card" data-reveal>
+        <div class="blog-img">
+          <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=900&q=80" alt="Kitchen design article" />
+          <div class="blog-cat">Materials</div>
+        </div>
+        <div class="blog-meta">
+          <span>March 14, 2024</span>
+          <span>· 6 min read</span>
+        </div>
+        <h3>The Quiet Authority of Honed Marble</h3>
+        <p>Why polished stone is giving way to softer, more atmospheric finishes in the modern luxury kitchen.</p>
+        <a href="#" class="link-arrow">Read Article
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+        </a>
+      </article>
+      <article class="blog-card" data-reveal data-reveal-delay="1">
+        <div class="blog-img">
+          <img src="https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=900&q=80" alt="Bathroom design article" />
+          <div class="blog-cat">Bath Design</div>
+        </div>
+        <div class="blog-meta">
+          <span>February 28, 2024</span>
+          <span>· 8 min read</span>
+        </div>
+        <h3>Designing the Modern Spa Bathroom</h3>
+        <p>Six principles that separate a truly restorative primary bath from a decorative imitation of one.</p>
+        <a href="#" class="link-arrow">Read Article
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+        </a>
+      </article>
+      <article class="blog-card" data-reveal data-reveal-delay="2">
+        <div class="blog-img">
+          <img src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?auto=format&fit=crop&w=900&q=80" alt="Home renovation article" />
+          <div class="blog-cat">Renovation</div>
+        </div>
+        <div class="blog-meta">
+          <span>February 10, 2024</span>
+          <span>· 5 min read</span>
+        </div>
+        <h3>What a $500K Renovation Actually Includes</h3>
+        <p>An honest, line-by-line breakdown of where investment goes in a premium whole-home project.</p>
+        <a href="#" class="link-arrow">Read Article
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h14m0 0L11 1m4 4l-4 4" stroke="currentColor" stroke-width="1"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-content" data-reveal>
+    <div class="eyebrow center">Begin the Conversation</div>
+    <h2>Ready to transform <em>your home?</em></h2>
+    <p>Schedule a complimentary consultation. We'll discuss your vision, your timeline, and whether ARK Desig is the right studio for your project.</p>
+    <a href="#contact" class="btn btn-gold"><span>Schedule a Consultation</span></a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-img" data-reveal>
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Luxury interior architecture" />
+      <div class="contact-img-info">
+        <h3>By appointment only</h3>
+        <p>We accept a limited number of projects each year to preserve the integrity of our work.</p>
+      </div>
+    </div>
+    <div class="contact-form-wrap" data-reveal data-reveal-delay="1">
+      <div class="eyebrow">Start Your Project</div>
+      <h2>Tell us about your <em>vision</em>.</h2>
+      <p>Complete the form below and we'll be in touch within one business day.</p>
+      <form id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Jane Doe" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="jane@email.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="(201) 555-0000" />
+          </div>
+          <div class="form-group">
+            <label>Project Type</label>
+            <select name="project" required>
+              <option value="">Select a project type</option>
+              <option>Kitchen Remodeling</option>
+              <option>Bathroom Remodeling</option>
+              <option>Whole Home Renovation</option>
+              <option>Other / Multiple</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell us about your home and what you hope to create..."></textarea>
+        </div>
+        <div class="response-time">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Average response time: <strong>under 4 hours</strong> during business days</span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center"><span>Send Inquiry</span></button>
+        <div class="contact-info-row">
+          <div class="contact-info-item">
+            <div class="label">Studio</div>
+            <div class="val">Bergen County, NJ</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="label">Email</div>
+            <div class="val">studio@arkdesig.com</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="label">Phone</div>
+            <div class="val">(201) 555-0182</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="label">Hours</div>
+            <div class="val">Mon–Fri · 9am–6pm</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <span class="logo-mark">A</span>
+        ARK DESIG
+      </a>
+      <p>A boutique design-build studio crafting luxury kitchens, baths, and whole-home renovations for discerning homeowners across Bergen County, New Jersey.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 0 0-4.37 23.17c-.06-.93-.12-2.36.02-3.38.13-.92.84-5.86.84-5.86s-.21-.43-.21-1.06c0-1 .58-1.74 1.3-1.74.61 0 .91.46.91 1.01 0 .62-.39 1.54-.59 2.4-.17.71.36 1.29 1.06 1.29 1.27 0 2.25-1.34 2.25-3.28 0-1.71-1.23-2.91-2.99-2.91-2.04 0-3.23 1.53-3.23 3.11 0 .62.24 1.28.53 1.64.06.07.07.13.05.2-.06.23-.18.71-.21.81-.03.13-.11.16-.25.1-1.13-.53-1.84-2.18-1.84-3.51 0-2.86 2.08-5.49 6-5.49 3.15 0 5.6 2.24 5.6 5.25 0 3.13-1.97 5.65-4.71 5.65-.92 0-1.79-.48-2.08-1.05 0 0-.46 1.74-.57 2.17-.21.79-.76 1.78-1.13 2.38A12 12 0 1 0 12 0z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Kitchen Remodeling</a></li>
+        <li><a href="#services">Bathroom Remodeling</a></li>
+        <li><a href="#services">Whole Home Renovation</a></li>
+        <li><a href="#services">Custom Cabinetry</a></li>
+        <li><a href="#services">Interior Design</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Areas Served</h4>
+      <ul>
+        <li><a href="#">Alpine</a></li>
+        <li><a href="#">Saddle River</a></li>
+        <li><a href="#">Englewood</a></li>
+        <li><a href="#">Franklin Lakes</a></li>
+        <li><a href="#">Tenafly</a></li>
+        <li><a href="#">All Bergen County</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Portfolio</h4>
+      <ul>
+        <li><a href="#projects">Kitchens</a></li>
+        <li><a href="#projects">Bathrooms</a></li>
+        <li><a href="#projects">Whole Homes</a></li>
+        <li><a href="#projects">Before & After</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#blog">Journal</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Schedule Consult</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 ARK Desig. All rights reserved.</p>
+    <div class="legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Lic. #13VH09876500</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============================================
+  // HEADER SCROLL
+  // ============================================
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  });
+
+  // ============================================
+  // MOBILE MENU
+  // ============================================
+  const menuToggle = document.getElementById('menuToggle');
+  const menuClose = document.getElementById('menuClose');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+  menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // ============================================
+  // REVEAL ON SCROLL
+  // ============================================
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+  // ============================================
+  // STATS COUNTER
+  // ============================================
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.count);
+        const suffix = el.querySelector('sup') ? el.querySelector('sup').outerHTML : '';
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 50));
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(interval);
+          }
+          el.innerHTML = current + suffix;
+        }, 30);
+        statObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-count]').forEach(el => statObserver.observe(el));
+
+  // ============================================
+  // BEFORE/AFTER SLIDER
+  // ============================================
+  document.querySelectorAll('[data-slider]').forEach(slider => {
+    const after = slider.querySelector('.ba-after');
+    const handle = slider.querySelector('.ba-handle');
+    let isDragging = false;
+
+    const setPos = (x) => {
+      const rect = slider.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+      after.style.clipPath = `inset(0 0 0 ${pos}%)`;
+      handle.style.left = pos + '%';
+    };
+
+    slider.addEventListener('mousedown', (e) => { isDragging = true; setPos(e.clientX); });
+    window.addEventListener('mousemove', (e) => { if (isDragging) setPos(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    slider.addEventListener('touchstart', (e) => { isDragging = true; setPos(e.touches[0].clientX); });
+    window.addEventListener('touchmove', (e) => { if (isDragging) setPos(e.touches[0].clientX); });
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    // Auto demo on first view
+    const demoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          let pos = 50;
+          let dir = 1;
+          const demo = setInterval(() => {
+            pos += dir * 1.2;
+            if (pos >= 65) dir = -1;
+            if (pos <= 35) { clearInterval(demo); after.style.clipPath = 'inset(0 0 0 50%)'; handle.style.left = '50%'; }
+            after.style.clipPath = `inset(0 0 0 ${pos}%)`;
+            handle.style.left = pos + '%';
+          }, 25);
+          demoObserver.unobserve(slider);
+        }
+      });
+    }, { threshold: 0.5 });
+    demoObserver.observe(slider);
+  });
+
+  // ============================================
+  // PROJECT FILTER
+  // ============================================
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projects = document.querySelectorAll('.project');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      projects.forEach(p => {
+        if (filter === 'all' || p.dataset.category === filter) {
+          p.classList.remove('hidden');
+          p.style.opacity = '0';
+          setTimeout(() => { p.style.opacity = '1'; }, 50);
+        } else {
+          p.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // ============================================
+  // CUSTOM CURSOR
+  // ============================================
+  const cursor = document.getElementById('cursor');
+  let mouseX = 0, mouseY = 0;
+  let curX = 0, curY = 0;
+  document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+  function animateCursor() {
+    curX += (mouseX - curX) * 0.2;
+    curY += (mouseY - curY) * 0.2;
+    cursor.style.left = curX + 'px';
+    cursor.style.top = curY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  document.querySelectorAll('a, button, [data-slider], .service-card, .blog-card, .review-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+
+  // ============================================
+  // FORM SUBMIT
+  // ============================================
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"] span');
+    const original = btn.textContent;
+    btn.textContent = 'Sending...';
+    setTimeout(() => {
+      btn.textContent = 'Inquiry Received ✓';
+      setTimeout(() => { btn.textContent = original; e.target.reset(); }, 2500);
+    }, 1200);
+  });
+
+  // ============================================
+  // PARALLAX HERO
+  // ============================================
+  const heroImg = document.querySelector('.hero-bg img');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    if (scrolled < window.innerHeight) {
+      heroImg.style.transform = `scale(1) translateY(${scrolled * 0.15}px)`;
+    }
+  });
+
+  // ============================================
+  // SMOOTH ANCHOR SCROLL
+  // ============================================
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
