@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Halftone — B2B Web Design & Development Studio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #F4F1EB;
+    --bone-2: #EDE8DF;
+    --paper: #FFFFFF;
+    --ink: #0B0B0A;
+    --ink-2: #1A1A18;
+    --muted: #6B6862;
+    --line: #D9D3C7;
+    --line-2: #E8E2D5;
+    --accent: #DC4A1E;
+    --accent-2: #B33812;
+    --accent-soft: #F2D9CC;
+  }
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    background: var(--bone);
+    color: var(--ink);
+    font-feature-settings: "ss01", "cv11", "cv02";
+    letter-spacing: -0.011em;
+  }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+  .serif-i { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0; }
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .hairline { border-color: var(--line); }
+  .hairline-2 { border-color: var(--line-2); }
+  .text-ink { color: var(--ink); }
+  .text-muted { color: var(--muted); }
+  .bg-bone { background: var(--bone); }
+  .bg-bone-2 { background: var(--bone-2); }
+  .bg-ink { background: var(--ink); }
+  .text-accent { color: var(--accent); }
+  .bg-accent { background: var(--accent); }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-1 { transition-delay: 60ms; }
+  .reveal-2 { transition-delay: 120ms; }
+  .reveal-3 { transition-delay: 180ms; }
+  .reveal-4 { transition-delay: 240ms; }
+
+  /* Marquee */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-track { animation: marquee 60s linear infinite; will-change: transform; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* Buttons */
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bone);
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-accent {
+    background: var(--accent);
+    color: white;
+    transition: background 200ms ease;
+  }
+  .btn-accent:hover { background: var(--accent-2); }
+
+  /* Service row */
+  .service-row { transition: background 300ms ease; cursor: pointer; }
+  .service-row:hover { background: var(--bone-2); }
+  .service-row .arrow { transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .service-row:hover .arrow { transform: translateX(8px); }
+  .service-row .desc { opacity: 0.55; transition: opacity 300ms ease; }
+  .service-row:hover .desc { opacity: 1; }
+  .service-row .price { transition: color 300ms ease; }
+  .service-row:hover .price { color: var(--accent); }
+
+  /* Nav blur */
+  .nav-blur {
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    background: rgba(244, 241, 235, 0.82);
+  }
+
+  /* Underline link */
+  .ulink {
+    position: relative;
+    display: inline-block;
+  }
+  .ulink::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ulink:hover::after { transform-origin: left; transform: scaleX(1); }
+
+  /* Stat counter */
+  .stat-num { font-variant-numeric: tabular-nums; }
+
+  /* USA map */
+  .map-dot { fill: var(--ink); transition: fill 250ms ease, r 250ms ease; cursor: pointer; }
+  .map-dot:hover { fill: var(--accent); }
+  .map-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: var(--muted); pointer-events: none; }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+  .pulse-ring { transform-origin: center; animation: pulse-ring 2.4s ease-out infinite; }
+
+  /* FAQ */
+  .faq-item .faq-a { max-height: 0; overflow: hidden; transition: max-height 500ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .faq-item.open .faq-a { max-height: 280px; }
+  .faq-item .faq-icon { transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-item .faq-q { transition: color 200ms ease; }
+  .faq-item.open .faq-q { color: var(--accent); }
+
+  /* Live dot */
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.85); }
+  }
+  .live-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+  /* Selection */
+  ::selection { background: var(--accent); color: white; }
+
+  /* Portfolio */
+  .pfolio-item { overflow: hidden; }
+  .pfolio-item img { transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .pfolio-item:hover img { transform: scale(1.04); }
+
+  /* Tech row */
+  .tech-row { transition: background 250ms ease; }
+  .tech-row:hover { background: var(--bone-2); }
+  .tech-row .why { opacity: 0.7; transition: opacity 300ms ease; }
+  .tech-row:hover .why { opacity: 1; }
+  .tech-row .cat { transition: color 300ms ease; }
+  .tech-row:hover .cat { color: var(--accent); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bone); }
+  ::-webkit-scrollbar-thumb { background: var(--line); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* Form */
+  .form-input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--ink);
+    transition: border-color 200ms ease;
+  }
+  .form-input:focus { outline: none; border-color: var(--accent); }
+  .form-input::placeholder { color: var(--muted); opacity: 0.6; }
+
+  /* Big wordmark in footer */
+  .big-word {
+    font-size: clamp(80px, 18vw, 240px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+    color: rgba(244, 241, 235, 0.08);
+    user-select: none;
+  }
+
+  /* prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .marquee-track { animation: none; }
+    .live-dot, .pulse-ring { animation: none; }
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+
+  /* Touch fallback */
+  @media (pointer: coarse) {
+    .ulink::after { display: none; }
+    .service-row:hover .arrow { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top utility bar -->
+<div class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-2.5 flex items-center justify-between text-xs">
+    <div class="flex items-center gap-6 mono text-[11px] text-muted">
+      <span class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent live-dot"></span>
+        <span>4 / 12 ENGAGEMENT SLOTS OPEN — Q1 2025</span>
+      </span>
+      <span class="hidden md:inline">BROOKLYN, NY · 9:42 AM EST</span>
+    </div>
+    <div class="hidden md:flex items-center gap-5 mono text-[11px] text-muted">
+      <a href="#" class="ulink">Clutch 4.9</a>
+      <a href="#" class="ulink">GitHub</a>
+      <a href="#" class="ulink">LinkedIn</a>
+      <a href="#" class="ulink">Read the Journal</a>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="sticky top-0 z-50 nav-blur border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2.5">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="11" cy="11" r="4" fill="var(--accent)"/>
+      </svg>
+      <span class="text-[18px] font-medium tracking-tight">Halftone</span>
+      <span class="hidden md:inline mono text-[10px] text-muted ml-1 border-l hairline pl-2.5">EST. 2017</span>
+    </a>
+    <div class="hidden lg:flex items-center gap-8 text-sm">
+      <a href="#work" class="ulink">Work</a>
+      <a href="#services" class="ulink">Services</a>
+      <a href="#process" class="ulink">Process</a>
+      <a href="#studio" class="ulink">Studio</a>
+      <a href="#journal" class="ulink">Journal</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="#contact" class="hidden md:inline-flex items-center gap-1.5 text-sm ulink">
+        Book a call
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8m0 0L7 3m3 3L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </a>
+      <a href="#contact" class="btn-accent px-4 py-2 text-sm font-medium inline-flex items-center gap-1.5">
+        Start a project
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8m0 0L7 3m3 3L7 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 pt-16 lg:pt-24 pb-16 lg:pb-20">
+    <div class="grid grid-cols-12 gap-8 lg:gap-12">
+      <div class="col-span-12 lg:col-span-7">
+        <div class="reveal flex items-center gap-3 mb-10">
+          <span class="label">001 — B2B Web Design & Development Studio</span>
+        </div>
+        <h1 class="reveal reveal-1 text-[44px] sm:text-[56px] md:text-[72px] lg:text-[88px] leading-[0.95] tracking-[-0.035em] font-medium">
+          We build websites<br>
+          that <span class="serif-i font-normal text-accent">earn their<br>budget back.</span>
+        </h1>
+        <p class="reveal reveal-2 mt-8 text-lg lg:text-xl max-w-[540px] text-[var(--ink-2)] leading-[1.5]">
+          Custom design and engineering for B2B companies who treat their website as revenue infrastructure — not a brochure.
+        </p>
+        <div class="reveal reveal-3 mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <a href="#contact" class="btn-accent px-6 py-3.5 text-[15px] font-medium inline-flex items-center gap-2">
+            Book a Free Strategy Call
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#work" class="text-[15px] inline-flex items-center gap-2 ulink">
+            View our work
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+        <!-- Trust metrics row -->
+        <div class="reveal reveal-4 mt-14 grid grid-cols-3 gap-6 max-w-[620px] border-t hairline pt-6">
+          <div>
+            <div class="mono text-[10px] text-muted mb-1.5 tracking-wider">ATTRIBUTED CLIENT REVENUE</div>
+            <div class="text-2xl font-medium tracking-tight">$180M+</div>
+          </div>
+          <div>
+            <div class="mono text-[10px] text-muted mb-1.5 tracking-wider">CLUTCH RATING</div>
+            <div class="text-2xl font-medium tracking-tight">4.9 <span class="text-muted text-base font-normal">/ 5</span></div>
+          </div>
+          <div>
+            <div class="mono text-[10px] text-muted mb-1.5 tracking-wider">SENIOR TEAM</div>
+            <div class="text-2xl font-medium tracking-tight">12 <span class="text-muted text-base font-normal">people</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Live project panel -->
+      <div class="col-span-12 lg:col-span-5 reveal reveal-2">
+        <div class="border hairline bg-[var(--paper)] p-6 lg:p-7">
+          <div class="flex items-center justify-between pb-4 border-b hairline-2">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent live-dot"></span>
+              <span class="mono text-[11px] text-ink tracking-wider">LIVE — IN PRODUCTION</span>
+            </div>
+            <span class="mono text-[11px] text-muted">WK 03 / 11</span>
+          </div>
+
+          <div class="pt-5">
+            <div class="mono text-[11px] text-muted mb-2 tracking-wider">CLIENT</div>
+            <div class="text-lg font-medium tracking-tight">Meridian B2B <span class="text-muted text-sm font-normal">— Series B SaaS</span></div>
+          </div>
+
+          <div class="pt-5">
+            <div class="mono text-[11px] text-muted mb-2 tracking-wider">SCOPE</div>
+            <div class="text-[15px] leading-snug">Site redesign · Headless rebuild · CRO retainer</div>
+          </div>
+
+          <div class="pt-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="mono text-[11px] text-muted tracking-wider">PROGRESS</span>
+              <span class="mono text-[11px]">27%</span>
+            </div>
+            <div class="h-[3px] bg-[var(--bone-2)] relative overflow-hidden">
+              <div class="absolute inset-y-0 left-0 bg-ink" style="width: 27%"></div>
+            </div>
+          </div>
+
+          <div class="pt-5 grid grid-cols-2 gap-4">
+            <div>
+              <div class="mono text-[11px] text-muted mb-1.5 tracking-wider">NEXT MILESTONE</div>
+              <div class="text-sm leading-snug">Design system review<br>Thu, Jan 23</div>
+            </div>
+            <div>
+              <div class="mono text-[11px] text-muted mb-1.5 tracking-wider">LEAD</div>
+              <div class="text-sm leading-snug">J. Okafor<br>Design Director</div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t hairline-2 flex items-center justify-between">
+            <span class="mono text-[11px] text-muted tracking-wider">STATUS — ON TRACK</span>
+            <a href="#work" class="mono text-[11px] inline-flex items-center gap-1 ulink">CASE STUDY →</a>
+          </div>
+        </div>
+
+        <div class="mt-3 flex items-start gap-2 mono text-[10px] text-muted">
+          <span>This is a real active engagement. Client name changed under NDA until launch.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outcomes marquee -->
+  <div class="border-y hairline marquee overflow-hidden py-5">
+    <div class="marquee-track flex gap-10 whitespace-nowrap mono text-[12px] text-muted">
+      <span><span class="text-ink font-medium">CARTIER STUDIOS</span> · SaaS · +47% conversion</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">BOLT INSURANCE</span> · Fintech · $2.3M attributed pipeline</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">NORTHWIND</span> · Logistics · 3.2x lead quality</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">ATLAS MEDICAL</span> · Medtech · -41% sales cycle</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">KESTREL AI</span> · ML Platform · $14M Series A raised</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">VANTA COMMERCE</span> · DTC · +62% AOV</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">CARTIER STUDIOS</span> · SaaS · +47% conversion</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">BOLT INSURANCE</span> · Fintech · $2.3M attributed pipeline</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">NORTHWIND</span> · Logistics · 3.2x lead quality</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">ATLAS MEDICAL</span> · Medtech · -41% sales cycle</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">KESTREL AI</span> · ML Platform · $14M Series A raised</span>
+      <span class="text-[var(--line)]">/</span>
+      <span><span class="text-ink font-medium">VANTA COMMERCE</span> · DTC · +62% AOV</span>
+      <span class="text-[var(--line)]">/</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 002 — OUTCOMES / STATS -->
+<section class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 mb-16">
+      <div class="col-span-12 lg:col-span-5 reveal">
+        <div class="label mb-4">002 — Receipts</div>
+        <h2 class="text-[40px] lg:text-[56px] tracking-[-0.025em] leading-[1.02] font-medium">
+          We don't show <span class="serif-i font-normal">awards.</span><br>
+          We show <span class="serif-i font-normal text-accent">numbers.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-6 lg:col-start-7 pt-2 reveal reveal-1">
+        <p class="text-lg leading-[1.55] text-[var(--ink-2)] max-w-[520px]">
+          Every engagement starts with a measurable hypothesis — usually tied to pipeline, conversion, or operational cost. Here's what's happened when we got it right.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 border-t hairline reveal">
+      <div class="border-b md:border-b-0 md:border-r hairline py-10 md:pr-8">
+        <div class="text-[56px] lg:text-[64px] tracking-[-0.04em] leading-none serif">
+          <span class="text-muted">$</span><span class="stat-num" data-target="180" data-decimals="0">0</span><span class="text-muted">M+</span>
+        </div>
+        <div class="mt-4 text-sm text-muted leading-snug">Attributed client revenue influenced by sites we've shipped. Tracked via GA4 + CRM, 2024.</div>
+      </div>
+      <div class="border-b md:border-b-0 md:border-r hairline py-10 md:px-8">
+        <div class="text-[56px] lg:text-[64px] tracking-[-0.04em] leading-none serif">
+          <span class="stat-num" data-target="4.9" data-decimals="1">0.0</span>
+        </div>
+        <div class="mt-4 text-sm text-muted leading-snug">Average Clutch review across 47 engagements since 2019.</div>
+      </div>
+      <div class="border-b md:border-b-0 md:border-r hairline py-10 md:px-8">
+        <div class="text-[56px] lg:text-[64px] tracking-[-0.04em] leading-none serif">
+          <span class="stat-num" data-target="94" data-decimals="0">0</span><span class="text-muted">%</span>
+        </div>
+        <div class="mt-4 text-sm text-muted leading-snug">Client retention past year one. We don't disappear after launch.</div>
+      </div>
+      <div class="py-10 md:pl-8">
+        <div class="text-[56px] lg:text-[64px] tracking-[-0.04em] leading-none serif">
+          <span class="stat-num" data-target="23" data-decimals="0">0</span>
+        </div>
+        <div class="mt-4 text-sm text-muted leading-snug">U.S. states we've shipped work in. Plus four countries.</div>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t hairline flex flex-col md:flex-row md:items-center md:justify-between gap-6 reveal">
+      <div class="mono text-[11px] text-muted tracking-wider">RECOGNITION — FOR WHAT IT'S WORTH</div>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[var(--ink-2)]">
+        <span>Awwwards SOTD ×7</span>
+        <span class="text-[var(--line)]">/</span>
+        <span>CSS Design Awards ×4</span>
+        <span class="text-[var(--line)]">/</span>
+        <span>Communication Arts, 2023</span>
+        <span class="text-[var(--line)]">/</span>
+        <span>Featured in Fast Company</span>
+        <span class="text-[var(--line)]">/</span>
+        <span>Inc. 5000 (2024)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 003 — SERVICES -->
+<section id="services" class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 mb-16">
+      <div class="col-span-12 lg:col-span-5 reveal">
+        <div class="label mb-4">003 — What we do</div>
+        <h2 class="text-[40px] lg:text-[56px] tracking-[-0.025em] leading-[1.02] font-medium">
+          Six engagements.<br>
+          <span class="serif-i font-normal text-accent">One standard.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-6 lg:col-start-7 pt-2 reveal reveal-1">
+        <p class="text-lg leading-[1.55] text-[var(--ink-2)] max-w-[520px]">
+          Every engagement follows the same operating model: senior team, weekly demos, fixed scope, no surprises. The shape of the work changes; the discipline doesn't.
+        </p>
+      </div>
+    </div>
+
+    <div class="border-t hairline reveal">
+      <a href="#contact" class="service-row block border-b hairline">
+        <div class="grid grid-cols-12 gap-4 py-7 items-center">
+          <div class="col-span-2 md:col-span-1 mono text-[12px] text-muted">01</div>
+          <div class="col-span-10 md:col-span-4 text-[22px] lg:text-[28px] tracking-[-0.02em] font-medium">Custom Website Development</div>
+          <div class="col-span-12 md:col-span-5 text-[14px] lg:text-[15px] text-muted desc leading-snug">For B2B brands outgrowing their template. Design system, headless CMS, performance budget enforced.</div>
+          <div class="col-span-12 md:col-span-2 flex items-center justify-between md:justify-end gap-4">
+            <span class="mono text-[11px] text-muted price tracking-wider">FROM $45K</span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-row block border-b hairline">
+        <div class="grid grid-cols-12 gap-4 py-7 items-center">
+          <div class="col-span-2 md:col-span-1 mono text-[12px] text-muted">02</div>
+          <div class="col-span-10 md:col-span-4 text-[22px] lg:text-[28px] tracking-[-0.02em] font-medium">Shopify Development</div>
+          <div class="col-span-12 md:col-span-5 text-[14px] lg:text-[15px] text-muted desc leading-snug">For DTC brands at scale. Custom checkout, B2B catalogs, subscription flows on Shopify Plus.</div>
+          <div class="col-span-12 md:col-span-2 flex items-center justify-between md:justify-end gap-4">
+            <span class="mono text-[11px] text-muted price tracking-wider">FROM $30K</span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-row block border-b hairline">
+        <div class="grid grid-cols-12 gap-4 py-7 items-center">
+          <div class="col-span-2 md:col-span-1 mono text-[12px] text-muted">03</div>
+          <div class="col-span-10 md:col-span-4 text-[22px] lg:text-[28px] tracking-[-0.02em] font-medium">WooCommerce Development</div>
+          <div class="col-span-12 md:col-span-5 text-[14px] lg:text-[15px] text-muted desc leading-snug">For B2B commerce workflows. Quote-to-cash, customer portals, ERP integration on top of WordPress.</div>
+          <div class="col-span-12 md:col-span-2 flex items-center justify-between md:justify-end gap-4">
+            <span class="mono text-[11px] text-muted price tracking-wider">FROM $35K</span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-row block border-b hairline">
+        <div class="grid grid-cols-12 gap-4 py-7 items-center">
+          <div class="col-span-2 md:col-span-1 mono text-[12px] text-muted">04</div>
+          <div class="col-span-10 md:col-span-4 text-[22px] lg:text-[28px] tracking-[-0.02em] font-medium">Landing Pages</div>
+          <div class="col-span-12 md:col-span-5 text-[14px] lg:text-[15px] text-muted desc leading-snug">For campaigns with paid traffic. Message-tested, A/B-ready, shipped in 10 business days.</div>
+          <div class="col-span-12 md:col-span-2 flex items-center justify-between md:justify-end gap-4">
+            <span class="mono text-[11px] text-muted price tracking-wider">FROM $8K</span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-row block border-b hairline">
+        <div class="grid grid-cols-12 gap-4 py-7 items-center">
+          <div class="col-span-2 md:col-span-1 mono text-[12px] text-muted">05</div>
+          <div class="col-span-10 md:col-span-4 text-[22px] lg:text-[28px] tracking-[-0.02em] font-medium">CMS Development</div>
+          <div class="col-span-12 md:col-span-5 text-[14px] lg:text-[15px] text-muted desc leading-snug">For teams publishing weekly. Headless architecture, editor experience designed for non-engineers.</div>
+          <div class="col-span-12 md:col-span-2 flex items-center justify-between md:justify-end gap-4">
+            <span class="mono text-[11px] text-muted price tracking-wider">FROM $25K</span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <a href="#contact" class="service-row block border-b hairline">
+        <div class="grid grid-cols-12 gap-4 py-7 items-center">
+          <div class="col-span-2 md:col-span-1 mono text-[12px] text-muted">06</div>
+          <div class="col-span-10 md:col-span-4 text-[22px] lg:text-[28px] tracking-[-0.02em] font-medium">Web Applications</div>
+          <div class="col-span-12 md:col-span-5 text-[14px] lg:text-[15px] text-muted desc leading-snug">For product-led growth companies. Dashboards, portals, internal tools — designed and engineered as one.</div>
+          <div class="col-span-12 md:col-span-2 flex items-center justify-between md:justify-end gap-4">
+            <span class="mono text-[11px] text-muted price tracking-wider">FROM $80K</span>
+            <svg class="arrow" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="mt-12 flex flex-col md:flex-row md:items-center md:justify-between gap-4 reveal">
+      <p class="text-sm text-muted max-w-md">Not sure which fits? <a href="#contact" class="ulink text-ink">Book a 30-minute call</a> — we'll tell you honestly.</p>
+      <p class="mono text-[11px] text-muted tracking-wider">ALL ENGAGEMENTS — FIXED SCOPE, NO HOURLY BILLING</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 004 — INDUSTRIES -->
+<section class="border-b hairline bg-bone-2">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 mb-12">
+      <div class="col-span-12 lg:col-span-7 reveal">
+        <div class="label mb-4">004 — Industries</div>
+        <h2 class="text-[40px] lg:text-[56px] tracking-[-0.025em] leading-[1.02] font-medium">
+          Twelve years across <span class="serif-i font-normal">regulated,</span><br>
+          considered, and <span class="serif-i font-normal text-accent">technical</span> buying cycles.
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-4 lg:col-start-9 self-end reveal reveal-1">
+        <p class="text-base text-muted leading-[1.6]">
+          We're not generalists who stumbled into B2B. Every project on this page is a B2B or considered-purchase buyer.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-px bg-[var(--line)] border hairline reveal">
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 bg-bone-2 p-8 lg:p-10">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="text-[22px] tracking-tight font-medium">B2B SaaS</span>
+          <span class="mono text-[11px] text-muted tracking-wider">23 PROJECTS</span>
+        </div>
+        <p class="text-sm text-muted leading-snug">From pre-revenue to Series C. We speak product, marketing, and engineering — usually in the same meeting.</p>
+        <div class="mt-6 mono text-[11px] text-accent tracking-wider">NOTABLE — KESTREL AI, MERIDIAN, ATLAS</div>
+      </div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 bg-bone-2 p-8 lg:p-10">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="text-[22px] tracking-tight font-medium">Financial Services</span>
+          <span class="mono text-[11px] text-muted tracking-wider">14 PROJECTS</span>
+        </div>
+        <p class="text-sm text-muted leading-snug">Insurance, lending, wealth. SOC 2-conscious builds, compliance review built into the timeline.</p>
+        <div class="mt-6 mono text-[11px] text-accent tracking-wider">NOTABLE — BOLT, FIDELITY PARTNERS</div>
+      </div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 bg-bone-2 p-8 lg:p-10">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="text-[22px] tracking-tight font-medium">Healthcare & Medtech</span>
+          <span class="mono text-[11px] text-muted tracking-wider">9 PROJECTS</span>
+        </div>
+        <p class="text-sm text-muted leading-snug">HIPAA-aware architecture, clinical stakeholder buy-in, FDA-regulated messaging constraints.</p>
+        <div class="mt-6 mono text-[11px] text-accent tracking-wider">NOTABLE — ATLAS MEDICAL, VECTOR HEALTH</div>
+      </div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 bg-bone-2 p-8 lg:p-10">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="text-[22px] tracking-tight font-medium">Manufacturing & Industrial</span>
+          <span class="mono text-[11px] text-muted tracking-wider">11 PROJECTS</span>
+        </div>
+        <p class="text-sm text-muted leading-snug">Long sales cycles, technical buyers, distributor networks. Sites that survive a procurement review.</p>
+        <div class="mt-6 mono text-[11px] text-accent tracking-wider">NOTABLE — NORTHWIND, HELIX FORGE</div>
+      </div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 bg-bone-2 p-8 lg:p-10">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="text-[22px] tracking-tight font-medium">Professional Services</span>
+          <span class="mono text-[11px] text-muted tracking-wider">17 PROJECTS</span>
+        </div>
+        <p class="text-sm text-muted leading-snug">Law, consulting, accounting. Where reputation precedes the pitch and the site has to confirm it.</p>
+        <div class="mt-6 mono text-[11px] text-accent tracking-wider">NOTABLE — CARTIER, WEXFORD PARTNERS</div>
+      </div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 bg-bone-2 p-8 lg:p-10">
+        <div class="flex items-baseline justify-between mb-6">
+          <span class="text-[22px] tracking-tight font-medium">DTC & Commerce</span>
+          <span class="mono text-[11px] text-muted tracking-wider">19 PROJECTS</span>
+        </div>
+        <p class="text-sm text-muted leading-snug">Shopify Plus, headless storefronts, subscription. For brands where AOV and LTV are weekly conversations.</p>
+        <div class="mt-6 mono text-[11px] text-accent tracking-wider">NOTABLE — VANTA, MOUNTAIN SUPPLY CO.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 005 — FEATURED CASE STUDY -->
+<section class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 mb-12">
+      <div class="col-span-12 lg:col-span-5 reveal">
+        <div class="label mb-4">005 — Featured case study</div>
+        <h2 class="text-[40px] lg:text-[56px] tracking-[-0.025em] leading-[1.02] font-medium">
+          Meridian: from <span class="serif-i font-normal">brochure</span><br>
+          to <span class="serif-i font-normal text-accent">pipeline engine.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-6 lg:col-start-7 self-end reveal reveal-1">
+        <p class="text-base text-muted leading-[1.6] max-w-[480px]">
+          Series B SaaS platform. Pre-engagement site had 78% bounce on paid traffic and couldn't get prospects past the pricing page. We rebuilt from research through engineering in 11 weeks.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-6 reveal">
+      <div class="col-span-12 lg:col-span-8">
+        <div class="aspect-[16/10] bg-ink overflow-hidden">
+          <img src="https://picsum.photos/seed/meridian-case-study/1400/875" alt="Meridian case study" class="w-full h-full object-cover">
+        </div>
+      </div>
+      <div class="col-span-12 lg:col-span-4 flex flex-col">
+        <div class="border hairline bg-[var(--paper)] p-6 lg:p-7 flex-1">
+          <div class="grid grid-cols-2 gap-y-5">
+            <div>
+              <div class="mono text-[10px] text-muted mb-1.5 tracking-wider">CLIENT</div>
+              <div class="text-sm font-medium">Meridian B2B</div>
+            </div>
+            <div>
+              <div class="mono text-[10px] text-muted mb-1.5 tracking-wider">YEAR</div>
+              <div class="text-sm">2024</div>
+            </div>
+            <div>
+              <div class="mono text-[10px] text-muted mb-1.5 tracking-wider">INDUSTRY</div>
+              <div class="text-sm">B2B SaaS<br>Sales intelligence</div>
+            </div>
+            <div>
+              <div class="mono text-[10px] text-muted mb-1.5 tracking-wider">ENGAGEMENT</div>
+              <div class="text-sm">11 weeks<br>$92k fixed scope</div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t hairline-2">
+            <div class="mono text-[10px] text-muted mb-2 tracking-wider">PROBLEM</div>
+            <p class="text-sm leading-snug">Pre-Series B site built on Webflow. 78% paid bounce. Sales couldn't get prospects past pricing.</p>
+          </div>
+          <div class="mt-4">
+            <div class="mono text-[10px] text-muted mb-2 tracking-wider">SOLUTION</div>
+            <p class="text-sm leading-snug">38 stakeholder interviews. 12 prospect tests. Custom Next.js front-end on headless Sanity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-12 gap-6 reveal">
+      <div class="col-span-12 lg:col-span-8">
+        <div class="grid grid-cols-3 border-t border-b hairline">
+          <div class="py-7 pr-4 border-r hairline">
+            <div class="mono text-[10px] text-muted mb-2 tracking-wider">CONVERSION RATE</div>
+            <div class="text-[44px] lg:text-[56px] serif leading-none tracking-tight">+47<span class="text-2xl text-muted">%</span></div>
+            <div class="text-xs text-muted mt-2 leading-snug">vs. previous site, 6 months post-launch</div>
+          </div>
+          <div class="py-7 px-4 border-r hairline">
+            <div class="mono text-[10px] text-muted mb-2 tracking-wider">PAID BOUNCE</div>
+            <div class="text-[44px] lg:text-[56px] serif leading-none tracking-tight">-31<span class="text-2xl text-muted">%</span></div>
+            <div class="text-xs text-muted mt-2 leading-snug">measured via GA4, same campaigns</div>
+          </div>
+          <div class="py-7 pl-4">
+            <div class="mono text-[10px] text-muted mb-2 tracking-wider">SALES CYCLE</div>
+            <div class="text-[44px] lg:text-[56px] serif leading-none tracking-tight">22<span class="text-2xl text-muted"> days</span></div>
+            <div class="text-xs text-muted mt-2 leading-snug">down from 41 — MQL → close</div>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <p class="text-sm text-muted max-w-md leading-snug">"They argued product positioning with our VP of Marketing in week two. They were right."</p>
+          <a href="#" class="inline-flex items-center gap-2 text-sm ulink whitespace-nowrap">Read the full case study <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 006 — PORTFOLIO -->
+<section id="work" class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 mb-12">
+      <div class="col-span-12 lg:col-span-6 reveal">
+        <div class="label mb-4">006 — Selected work</div>
+        <h2 class="text-[40px] lg:text-[56px] tracking-[-0.025em] leading-[1.02] font-medium">
+          A small <span class="serif-i font-normal">sample.</span><br>
+          We take on <span class="serif-i font-normal text-accent">twelve projects</span> a year.
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-4 lg:col-start-9 self-end reveal reveal-1">
+        <p class="text-base text-muted leading-[1.6]">
+          We don't optimize for portfolio volume. We optimize for outcomes you can put in a board deck.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-4 reveal">
+      <a href="#" class="pfolio-item col-span-12 lg:col-span-7 aspect-[16/10] relative bg-ink group block">
+        <img src="https://picsum.photos/seed/portfolio-meridian/1200/750" class="w-full h-full object-cover opacity-90" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-7 text-white">
+          <div class="mono text-[11px] mb-2 tracking-wider opacity-70">B2B SAAS · 2024 · NEXT.JS + SANITY</div>
+          <div class="text-[26px] lg:text-[32px] tracking-tight font-medium">Meridian B2B</div>
+          <div class="text-sm opacity-80 mt-1">+47% conversion · 11-week engagement</div>
+        </div>
+      </a>
+      <a href="#" class="pfolio-item col-span-12 lg:col-span-5 aspect-[16/10] lg:aspect-auto relative bg-ink group block">
+        <img src="https://picsum.photos/seed/portfolio-bolt/900/750" class="w-full h-full object-cover opacity-90" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-7 text-white">
+          <div class="mono text-[11px] mb-2 tracking-wider opacity-70">FINTECH · 2024 · WEBFLOW</div>
+          <div class="text-[26px] lg:text-[32px] tracking-tight font-medium">Bolt Insurance</div>
+          <div class="text-sm opacity-80 mt-1">$2.3M attributed pipeline</div>
+        </div>
+      </a>
+      <a href="#" class="pfolio-item col-span-12 md:col-span-6 lg:col-span-4 aspect-[4/3] relative bg-ink group block">
+        <img src="https://picsum.photos/seed/portfolio-northwind/800/600" class="w-full h-full object-cover opacity-90" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+          <div class="mono text-[11px] mb-1 tracking-wider opacity-70">LOGISTICS · 2023</div>
+          <div class="text-[22px] tracking-tight font-medium">Northwind</div>
+          <div class="text-sm opacity-80 mt-1">3.2x lead quality</div>
+        </div>
+      </a>
+      <a href="#" class="pfolio-item col-span-12 md:col-span-6 lg:col-span-4 aspect-[4/3] relative bg-ink group block">
+        <img src="https://picsum.photos/seed/portfolio-atlas/800/600" class="w-full h-full object-cover opacity-90" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+          <div class="mono text-[11px] mb-1 tracking-wider opacity-70">MEDTECH · 2023</div>
+          <div class="text-[22px] tracking-tight font-medium">Atlas Medical</div>
+          <div class="text-sm opacity-80 mt-1">-41% sales cycle</div>
+        </div>
+      </a>
+      <a href="#" class="pfolio-item col-span-12 lg:col-span-4 aspect-[4/3] relative bg-ink group block">
+        <img src="https://picsum.photos/seed/portfolio-vanta/800/600" class="w-full h-full object-cover opacity-90" alt="">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+          <div class="mono text-[11px] mb-1 tracking-wider opacity-70">DTC · 2024 · SHOPIFY PLUS</div>
+          <div class="text-[22px] tracking-tight font-medium">Vanta Commerce</div>
+          <div class="text-sm opacity-80 mt-1">+62% AOV</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="mt-10 flex items-center justify-between border-t hairline pt-6 reveal">
+      <p class="text-sm text-muted">Showing 5 of 47 case studies.</p>
+      <a href="#" class="text-sm inline-flex items-center gap-2 ulink">View all work
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 007 — PROCESS -->
+<section id="process" class="border-b hairline bg-ink text-[var(--bone)]">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 mb-16">
+      <div class="col-span-12 lg:col-span-5 reveal">
+        <div class="mono text-[11px] mb-4 tracking-wider" style="color: rgba(244,241,235,0.5)">007 — How we work</div>
+        <h2 class="text-[40px] lg:text-[56px] tracking-[-0.025em] leading-[1.02] font-medium">
+          Six phases.<br>
+          <span class="serif-i font-normal text-accent">No surprises.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-6 lg:col-start-7 self-end reveal reveal-1">
+        <p class="text-lg leading-[1.55]" style="color: rgba(244,241,235,0.7)">
+          Every engagement runs against a fixed timeline. You'll know what we're doing, when, and why — usually before you ask.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="grid grid-cols-12 gap-4 lg:gap-8 py-8 border-t" style="border-color: rgba(244,241,235,0.15)">
+        <div class="col-span-2 lg:col-span-1 mono text-[11px]" style="color: rgba(244,241,235,0.5)">01</div>
+        <div class="col-span-10 lg:col-span-3">
+          <div class="text-[22px] lg:text-[28px] tracking-tight font-medium">Discovery</div>
+          <div class="mono text-[11px] mt-1 tracking-wider" style="color: rgba(244,241,235,0.5)">WEEK 1</div>
+        </div>
+        <div class="col-span-12 lg:col-span-7 lg:col-start-5 text-[15px] leading-[1.6]" style="color: rgba(244,241,235,0.75)">
+          Stakeholder interviews, analytics audit, competitive teardown. We document what's actually broken before we touch design. <span style="color: rgba(244,241,235,0.5)">Deliverable: a 12-page diagnostic your CEO will actually read.</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 lg:gap-8 py-8 border-t" style="border-color: rgba(244,241,235,0.15)">
+        <div class="col-span-2 lg:col-span-1 mono text-[11px]" style="color: rgba(244,241,235,0.5)">02</div>
+        <div class="col-span-10 lg:col-span-3">
+          <div class="text-[22px] lg:text-[28px] tracking-tight font-medium">Strategy</div>
+          <div class="mono text-[11px] mt-1 tracking-wider" style="color: rgba(244,241,235,0.5)">WEEK 2 — 3</div>
+        </div>
+        <div class="col-span-12 lg:col-span-7 lg:col-start-5 text-[15px] leading-[1.6]" style="color: rgba(244,241,235,0.75)">
+          Message architecture, conversion paths, content model. The blueprint your sales team will recognize and your engineers won't fight. <span style="color: rgba(244,241,235,0.5)">Deliverable: wireframes + message hierarchy, signed off before design begins.</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 lg:gap-8 py-8 border-t" style="border-color: rgba(244,241,235,0.15)">
+        <div class="col-span-2 lg:col-span-1 mono text-[11px]" style="color: rgba(244,241,235,0.5)">03</div>
+        <div class="col-span-10 lg:col-span-3">
+          <div class="text-[22px] lg:text-[28px] tracking-tight font-medium">Design</div>
+          <div class="mono text-[11px] mt-1 tracking-wider" style="color: rgba(244,241,235,0.5)">WEEK 3 — 6</div>
+        </div>
+        <div class="col-span-12 lg:col-span-7 lg:col-start-5 text-[15px] leading-[1.6]" style="color: rgba(244,241,235,0.75)">
+          High-fidelity in Figma with real copy, real images, reviewed weekly. We don't do "design then iterate forever." <span style="color: rgba(244,241,235,0.5)">Two rounds, then we ship. Deliverable: production-ready design system.</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 lg:gap-8 py-8 border-t" style="border-color: rgba(244,241,235,0.15)">
+        <div class="col-span-2 lg:col-span-1 mono text-[11px]" style="color: rgba(244,241,235,0.5)">04</div>
+        <div class="col-span-10 lg:col-span-3">
+          <div class="text-[22px] lg:text-[28px] tracking-tight font-medium">Development</div>
+          <div class="mono text-[11px] mt-1 tracking-wider" style="color: rgba(244,241,235,0.5)">WEEK 5 — 10</div>
+        </div>
+        <div class="col-span-12 lg:col-span-7 lg:col-start-5 text-[15px] leading-[1.6]" style="color: rgba(244,241,235,0.75)">
+          Component-driven front-end on a headless CMS. CI/CD from day one. Your team pushes to staging by week 7. <span style="color: rgba(244,241,235,0.5)">Deliverable: a codebase your in-house team can maintain.</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 lg:gap-8 py-8 border-t" style="border-color: rgba(244,241,235,0.15)">
+        <div class="col-span-2 lg:col-span-1 mono text-[11px]" style="color: rgba(244,241,235,0.5)">05</div>
+        <div class="col-span-10 lg:col-span-3">
+          <div class="text-[22px] lg:text-[28px] tracking-tight font-medium">Launch</div>
+          <div class="mono text-[11px] mt-1 tracking-wider" style="color: rgba(244,241,235,0.5)">WEEK 10 — 11</div>
+        </div>
+        <div class="col-span-12 lg:col-span-7 lg:col-start-5 text-[15px] leading-[1.6]" style="color: rgba(244,241,235,0.75)">
+          QA across 14 device/browser combinations, redirect mapping, analytics instrumentation, performance budget enforced. <span style="color: rgba(244,241,235,0.5)">Zero "launch day surprises."</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 lg:gap-8 py-8 border-t border-b" style="border-color: rgba(244,241,235,0.15)">
+        <div class="col-span-2 lg:col-span-1 mono text-[11px]" style="color: rgba(244,241,235,0.5)">06</div>
+        <div class="col-span-10 lg:col-span-3">
+          <div class="text-[22px] lg:text-[28px] tracking-tight font-medium">Growth</div>
+          <div class="mono text-[11px] mt-1 tracking-wider text-accent">ONGOING</div>
+        </div>
+        <div class="col-span-12 lg:col-span-7 lg:col-start-5 text-[15px] leading-[1.6]" style="color: rgba(244,241,235,0.75)">
+          Monthly CRO sprints tied to pipeline metrics. We don't disappear after launch — we usually stay on for 12+ months. <span style="color: rgba(244,241,235,0.5)">94% of clients extend past year one.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 008 — TECHNOLOGY -->
+<section class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 mb-12">
+      <div class="col-span-12 lg:col-span-5 reveal">
+        <div class="label mb-4">008 — Technology</div>
+        <h2 class="text-[40px] lg:text-[56px] tracking-[-0.025em] leading-[1.02] font-medium">
+          A <span class="serif-i font-normal">boring,</span> reliable<br>
+          <span class="serif-i font-normal text-accent">stack.</span>
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-6 lg:col-start-7 self-end reveal reveal-1">
+        <p class="text-base text-muted leading-[1.6] max-w-[520px]">
+          We pick technologies your team can maintain after we leave. No novelty frameworks. No "we wrote our own CMS." Here's what we use, and why.
+        </p>
+      </div>
+    </div>
+
+    <div class="border-t hairline reveal">
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">WordPress</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">CMS</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">When your content team needs familiar editing. We harden it — headless, decoupled, audit-ready.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">Shopify</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">COMMERCE</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">For DTC at scale. Custom checkout, B2B catalogs, subscription flows on Shopify Plus.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">WooCommerce</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">COMMERCE</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">When WordPress is already your CMS and you need commerce that fits it.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">Webflow</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">CMS</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">Marketing velocity without engineering bottlenecks. Best for teams shipping weekly.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">React</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">FRAMEWORK</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">Component-driven UI for design systems that survive the next redesign.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">Next.js</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">FRAMEWORK</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">SSR + edge performance for content-heavy sites. Our default for new builds.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">Node.js</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">RUNTIME</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">APIs, internal tools, and integrations that don't fight your existing stack.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">Laravel</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">FRAMEWORK</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">For PHP-shop teams that need to maintain what we build. Long-term maintainability over novelty.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">Tailwind CSS</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">STYLING</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">Design tokens as code. Survives the next redesign without a rewrite.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">AWS</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">INFRASTRUCTURE</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">Boring, reliable, audit-ready. We set it up; your team owns it.</div>
+      </div>
+      <div class="tech-row grid grid-cols-12 gap-4 py-5 border-b hairline items-baseline px-2 -mx-2">
+        <div class="col-span-12 md:col-span-3 text-[20px] font-medium tracking-tight">Figma</div>
+        <div class="col-span-6 md:col-span-2 mono text-[11px] text-muted cat tracking-wider">DESIGN</div>
+        <div class="col-span-12 md:col-span-7 text-[14px] lg:text-[15px] why leading-snug">Single source of truth for design + engineering. Real-time, no handoff docs.</div>
+      </div>
+    </div>
+
+    <div class="mt-10 grid grid-cols-12 gap-8 reveal">
+      <div class="col-span-12 md:col-span-8">
+        <p class="text-sm text-muted leading-[1.6] max-w-[640px]">
+          We've shipped production work in other stacks — Ruby on Rails, Django, Astro, SvelteKit. We'll use what your team already knows. The list above is what we'd choose if starting from scratch.
+        </p>
+      </div>
+      <div class="col-span-12 md:col-span-4 md:text-right">
+        <a href="#contact" class="inline-flex items-center gap-2 text-sm ulink">Ask about your stack
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 009 — WHY US -->
+<section id="studio" class="border-b hairline bg-bone-2">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8">
+      <div class="col-span-12 lg:col-span-4 reveal">
+        <div class="label mb-4">009 — Why us</div>
+        <h2 class="text-[40px] lg:text-[52px] tracking-[-0.025em] leading-[1.02] font-medium">
+          What you get<br>
+          when you hire<br>
+          <span class="serif-i font-normal text-accent">a studio,</span><br>
+          not a freelancer.
+        </h2>
+        <div class="mt-10 pt-6 border-t hairline">
+          <div class="mono text-[11px] text-muted mb-2 tracking-wider">FOUNDED</div>
+          <div class="text-base">2017 · Brooklyn, NY</div>
+        </div>
+        <div class="mt-5 pt-5 border-t hairline">
+          <div class="mono text-[11px] text-muted mb-2 tracking-wider">TEAM</div>
+          <div class="text-base">12 senior people. No juniors staffed on your project.</div>
+        </div>
+        <div class="mt-5 pt-5 border-t hairline">
+          <div class="mono text-[11px] text-muted mb-2 tracking-wider">STRUCTURE</div>
+          <div class="text-base">LLC, B-Corp certified, employee-owned.</div>
+        </div>
+      </div>
+
+      <div class="col-span-12 lg:col-span-7 lg:col-start-6 space-y-12 reveal reveal-1">
+        <div>
+          <div class="mono text-[11px] text-muted mb-3 tracking-wider">001 — BUSINESS UNDERSTANDING</div>
+          <p class="text-[22px] lg:text-[26px] leading-[1.35] tracking-[-0.01em]">
+            We've shipped work for 14 SaaS companies, 9 fintechs, and 6 industrial firms. We start every engagement by reading your <span class="serif-i">sales deck</span> — not your sitemap.
+          </p>
+        </div>
+        <div>
+          <div class="mono text-[11px] text-muted mb-3 tracking-wider">002 — CONVERSION-FOCUSED DESIGN</div>
+          <p class="text-[22px] lg:text-[26px] leading-[1.35] tracking-[-0.01em]">
+            We design for buyers, not awards. Every page has a measurable hypothesis. Every element has a reason. We A/B test what we can and instrument what we can't.
+          </p>
+        </div>
+        <div>
+          <div class="mono text-[11px] text-muted mb-3 tracking-wider">003 — TRANSPARENT COMMUNICATION</div>
+          <p class="text-[22px] lg:text-[26px] leading-[1.35] tracking-[-0.01em]">
+            You get a shared Linear board, a weekly demo, and a Slack channel with the people actually doing the work. <span class="serif-i">No project managers</span> playing telephone.
+          </p>
+        </div>
+        <div>
+          <div class="mono text-[11px] text-muted mb-3 tracking-wider">004 — LONG-TERM PARTNERSHIP</div>
+          <p class="text-[22px] lg:text-[26px] leading-[1.35] tracking-[-0.01em]">
+            94% of clients extend past launch. We're still doing CRO sprints for clients we built for in 2019. That's the relationship we optimize for — not the launch invoice.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 010 — TESTIMONIALS -->
+<section class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8">
+      <div class="col-span-12 lg:col-span-2 reveal">
+        <div class="label">010 — Testimonial</div>
+      </div>
+      <div class="col-span-12 lg:col-span-9 lg:col-start-3 reveal reveal-1">
+        <div class="text-[28px] md:text-[36px] lg:text-[52px] leading-[1.2] tracking-[-0.025em] font-medium">
+          <span class="serif text-accent">"</span>We've worked with three agencies before Halftone. The difference is they actually <span class="serif-i font-normal">read our sales deck</span> before the first call. By week two they were arguing product positioning with our VP of Marketing — and they were <span class="serif-i font-normal text-accent">right.</span><span class="serif text-accent">"</span>
+        </div>
+        <div class="mt-10 flex items-center gap-4 pt-6 border-t hairline max-w-md">
+          <div class="w-12 h-12 rounded-full bg-bone-2 overflow-hidden">
+            <img src="https://picsum.photos/seed/sarah-chen-meridian/100/100" class="w-full h-full object-cover" alt="">
+          </div>
+          <div>
+            <div class="font-medium">Sarah Chen</div>
+            <div class="text-sm text-muted">VP Marketing, Meridian B2B · Series B SaaS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--line)] border hairline reveal">
+      <div class="bg-bone p-8">
+        <div class="text-base leading-[1.55]">"The diagnostic alone was worth the engagement. They found three problems we didn't know we had — and one we'd been arguing about for a year."</div>
+        <div class="mt-6 pt-4 border-t hairline-2">
+          <div class="font-medium text-sm">Marcus Webb</div>
+          <div class="text-sm text-muted">CEO, Northwind Logistics</div>
+        </div>
+      </div>
+      <div class="bg-bone p-8">
+        <div class="text-base leading-[1.55]">"They handed off a codebase my team could actually maintain. Documentation, CI/CD, the works. First agency we've worked with where that wasn't a fight."</div>
+        <div class="mt-6 pt-4 border-t hairline-2">
+          <div class="font-medium text-sm">Priya Raman</div>
+          <div class="text-sm text-muted">CTO, Kestrel AI</div>
+        </div>
+      </div>
+      <div class="bg-bone p-8">
+        <div class="text-base leading-[1.55]">"Our last redesign took 14 months and never launched. Halftone shipped in 11 weeks. The site has paid for itself twice over."</div>
+        <div class="mt-6 pt-4 border-t hairline-2">
+          <div class="font-medium text-sm">David Okonkwo</div>
+          <div class="text-sm text-muted">Founder, Vanta Commerce</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 011 — OUR PRESENCE -->
+<section class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 mb-12">
+      <div class="col-span-12 lg:col-span-6 reveal">
+        <div class="label mb-4">011 — Where we work</div>
+        <h2 class="text-[40px] lg:text-[56px] tracking-[-0.025em] leading-[1.02] font-medium">
+          Based in Brooklyn.<br>
+          <span class="serif-i font-normal text-accent">On planes</span> when needed.
+        </h2>
+      </div>
+      <div class="col-span-12 lg:col-span-5 lg:col-start-8 self-end reveal reveal-1">
+        <p class="text-base text-muted leading-[1.6] max-w-[420px]">
+          Twelve-person senior team. We work hybrid — three days in the Brooklyn studio, two remote. We travel for kickoff and launch, anywhere in the US.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-8 mt-8 reveal">
+      <div class="col-span-12 lg:col-span-8">
+        <div class="aspect-[16/10] bg-bone-2 relative overflow-hidden border hairline">
+          <svg viewBox="0 0 1000 600" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <pattern id="dotgrid" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                <circle cx="8" cy="8" r="0.8" fill="var(--line)"/>
+              </pattern>
+            </defs>
+            <rect width="1000" height="600" fill="url(#dotgrid)"/>
+
+            <!-- Simplified US outline -->
+            <path d="M 95 200 Q 88 175 105 158 L 145 148 Q 220 138 310 138 L 410 140 Q 510 145 600 154 L 670 168 Q 700 180 712 210 L 715 245 Q 710 280 698 312 L 678 348 Q 652 388 615 412 L 565 435 Q 520 450 480 448 L 432 440 Q 395 425 360 418 L 310 412 Q 260 410 215 415 L 175 410 Q 138 398 120 372 L 105 340 Q 92 300 90 260 Z"
+                  fill="rgba(244, 241, 235, 0.5)"
+                  stroke="var(--line)"
+                  stroke-width="1.2"/>
+
+            <!-- City dots -->
+            <g>
+              <circle cx="140" cy="180" r="4" class="map-dot"/>
+              <text x="152" y="184" class="map-label">Seattle</text>
+
+              <circle cx="135" cy="218" r="4" class="map-dot"/>
+              <text x="147" y="222" class="map-label">Portland</text>
+
+              <circle cx="120" cy="270" r="4" class="map-dot"/>
+              <text x="132" y="274" class="map-label">SF</text>
+
+              <circle cx="150" cy="335" r="4" class="map-dot"/>
+              <text x="162" y="339" class="map-label">LA</text>
+
+              <circle cx="205" cy="365" r="4" class="map-dot"/>
+              <text x="217" y="369" class="map-label">Phoenix</text>
+
+              <circle cx="305" cy="280" r="4" class="map-dot"/>
+              <text x="317" y="284" class="map-label">Denver</text>
+
+              <circle cx="290" cy="395" r="4" class="map-dot"/>
+              <text x="302" y="399" class="map-label">Austin</text>
+
+              <circle cx="320" cy="370" r="4" class="map-dot"/>
+              <text x="332" y="374" class="map-label">Dallas</text>
+
+              <circle cx="395" cy="195" r="4" class="map-dot"/>
+              <text x="407" y="199" class="map-label">Minneapolis</text>
+
+              <circle cx="465" cy="225" r="4" class="map-dot"/>
+              <text x="477" y="229" class="map-label">Chicago</text>
+
+              <circle cx="490" cy="305" r="4" class="map-dot"/>
+              <text x="502" y="309" class="map-label">Nashville</text>
+
+              <circle cx="515" cy="340" r="4" class="map-dot"/>
+              <text x="527" y="344" class="map-label">Atlanta</text>
+
+              <circle cx="540" cy="425" r="4" class="map-dot"/>
+              <text x="552" y="429" class="map-label">Miami</text>
+
+              <circle cx="595" cy="270" r="4" class="map-dot"/>
+              <text x="555" y="265" class="map-label" text-anchor="end">DC</text>
+
+              <!-- HQ -->
+              <circle cx="625" cy="235" r="14" fill="var(--accent)" opacity="0.2" class="pulse-ring"/>
+              <circle cx="625" cy="235" r="6" fill="var(--accent)"/>
+              <text x="637" y="225" class="map-label" fill="var(--accent)" font-weight="500">BROOKLYN HQ</text>
+
+              <circle cx="655" cy="210" r="4" class="map-dot"/>
+              <text x="667" y="214" class="map-label">Boston</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="col-span-12 lg:col-span-4">
+        <div class="border-t hairline">
+          <div class="py-5 border-b hairline flex items-baseline justify-between">
+            <div>
+              <div class="font-medium text-base">Brooklyn, NY</div>
+              <div class="text-sm text-muted mt-0.5">HQ — 1,400 sqft studio, Industry City</div>
+            </div>
+            <span class="mono text-[10px] text-accent tracking-wider">● HQ</span>
+          </div>
+          <div class="py-5 border-b hairline flex items-baseline justify-between">
+            <div>
+              <div class="font-medium text-base">Austin, TX</div>
+              <div class="text-sm text-muted mt-0.5">Satellite — 2 team members</div>
+            </div>
+            <span class="mono text-[10px] text-muted tracking-wider">○ SATELLITE</span>
+          </div>
+          <div class="py-5 border-b hairline flex items-baseline justify-between">
+            <div>
+              <div class="font-medium text-base">Remote</div>
+              <div class="text-sm text-muted mt-0.5">8 team members across 6 states</div>
+            </div>
+            <span class="mono text-[10px] text-muted tracking-wider">○ REMOTE</span>
+          </div>
+          <div class="py-5 border-b hairline flex items-baseline justify-between">
+            <div>
+              <div class="font-medium text-base">On-site</div>
+              <div class="text-sm text-muted mt-0.5">Kickoff + launch, anywhere in the US</div>
+            </div>
+            <span class="mono text-[10px] text-muted tracking-wider">✈ TRAVEL</span>
+          </div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-2 gap-6 pt-6 border-t hairline">
+          <div>
+            <div class="text-[40px] serif leading-none tracking-tight">23</div>
+            <div class="text-xs text-muted mt-2 leading-snug">States we've shipped work in.</div>
+          </div>
+          <div>
+            <div class="text-[40px] serif leading-none tracking-tight">4</div>
+            <div class="text-xs text-muted mt-2 leading-snug">Countries — US, UK, Canada, Germany.</div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t hairline">
+          <a href="#contact" class="inline-flex items-center gap-2 text-sm ulink">Working with US clients only — for now
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 012 — FAQ -->
+<section class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8">
+      <div class="col-span-12 lg:col-span-4 reveal">
+        <div class="label mb-4">012 — Questions</div>
+        <h2 class="text-[40px] lg:text-[52px] tracking-[-0.025em] leading-[1.02] font-medium">
+          Things founders<br>
+          ask us <span class="serif-i font-normal text-accent">first.</span>
+        </h2>
+        <p class="mt-6 text-base text-muted leading-[1.6] max-w-[320px]">
+          Don't see your question? Email <a href="mailto:hello@halftone.studio" class="ulink text-ink">hello@halftone.studio</a> — we usually reply within 4 hours.
+        </p>
+      </div>
+      <div class="col-span-12 lg:col-span-7 lg:col-start-6 reveal reveal-1">
+        <div class="border-t hairline">
+          <div class="faq-item border-b hairline">
+            <button class="w-full flex items-center justify-between py-6 text-left gap-4">
+              <span class="faq-q text-[19px] lg:text-[22px] tracking-tight font-medium pr-4">How much does a typical engagement cost?</span>
+              <svg class="faq-icon shrink-0" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">
+              <p class="pb-6 text-[15px] text-muted leading-[1.6] max-w-[540px]">
+                Most engagements land between $45k and $180k. Landing pages start at $8k. Web applications start at $80k. We send a fixed-scope proposal after the strategy call — no hourly billing, no scope creep. CRO retainers start at $4k/month.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item border-b hairline">
+            <button class="w-full flex items-center justify-between py-6 text-left gap-4">
+              <span class="faq-q text-[19px] lg:text-[22px] tracking-tight font-medium pr-4">How long does a project take?</span>
+              <svg class="faq-icon shrink-0" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">
+              <p class="pb-6 text-[15px] text-muted leading-[1.6] max-w-[540px]">
+                A typical marketing site runs 8–12 weeks from kickoff to launch. Web applications run 12–20 weeks. We work in weekly sprints with demos every Friday — you'll always know where we are.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item border-b hairline">
+            <button class="w-full flex items-center justify-between py-6 text-left gap-4">
+              <span class="faq-q text-[19px] lg:text-[22px] tracking-tight font-medium pr-4">Do you work with our existing engineering team?</span>
+              <svg class="faq-icon shrink-0" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">
+              <p class="pb-6 text-[15px] text-muted leading-[1.6] max-w-[540px]">
+                Yes, and we prefer it. We hand off a codebase your team can maintain, with documentation, CI/CD, and a 90-day support window. About 60% of our clients have in-house engineering — we adapt to their stack, not the other way around.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item border-b hairline">
+            <button class="w-full flex items-center justify-between py-6 text-left gap-4">
+              <span class="faq-q text-[19px] lg:text-[22px] tracking-tight font-medium pr-4">What happens after launch?</span>
+              <svg class="faq-icon shrink-0" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">
+              <p class="pb-6 text-[15px] text-muted leading-[1.6] max-w-[540px]">
+                Launch day is week 11, not the end. We include a 90-day support window and offer monthly CRO retainers starting at $4k/month. 94% of clients extend past year one — we're still doing sprints for clients we built for in 2019.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item border-b hairline">
+            <button class="w-full flex items-center justify-between py-6 text-left gap-4">
+              <span class="faq-q text-[19px] lg:text-[22px] tracking-tight font-medium pr-4">Can you work with our brand guidelines?</span>
+              <svg class="faq-icon shrink-0" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">
+              <p class="pb-6 text-[15px] text-muted leading-[1.6] max-w-[540px]">
+                Yes. We've built sites on top of established brand systems and we've created brand systems from scratch. We don't force a "Halftone look" — we adapt to your brand. If your guidelines need work, we'll tell you, and we'll help.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item border-b hairline">
+            <button class="w-full flex items-center justify-between py-6 text-left gap-4">
+              <span class="faq-q text-[19px] lg:text-[22px] tracking-tight font-medium pr-4">Do you offer ongoing CRO?</span>
+              <svg class="faq-icon shrink-0" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">
+              <p class="pb-6 text-[15px] text-muted leading-[1.6] max-w-[540px]">
+                Yes, as a monthly retainer. We pick 2–3 hypotheses per month, ship tests, and report on pipeline impact. Most clients see meaningful lift within 60 days. Retainers are month-to-month — no annual lock-in.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 013 — FINAL CTA -->
+<section class="border-b hairline bg-ink text-[var(--bone)]">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-32 lg:py-40">
+    <div class="max-w-[860px] reveal">
+      <div class="mono text-[11px] mb-8 tracking-wider" style="color: rgba(244,241,235,0.5)">013 — A note from us</div>
+      <p class="text-[28px] md:text-[36px] lg:text-[48px] leading-[1.25] tracking-[-0.025em] font-medium">
+        If you've read this far, you're probably the kind of client we work well with. <span class="serif-i font-normal text-accent">Book a call.</span> We'll tell you honestly whether we can help — and if we can't, we'll introduce you to someone who can.
+      </p>
+      <div class="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        <a href="#contact" class="btn-accent px-7 py-4 text-[15px] font-medium inline-flex items-center gap-2">
+          Book a Free Strategy Call
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </a>
+        <a href="mailto:hello@halftone.studio" class="text-[15px] inline-flex items-center gap-2 ulink" style="color: rgba(244,241,235,0.8)">
+          Or email hello@halftone.studio
+        </a>
+      </div>
+      <div class="mt-14 pt-8 border-t" style="border-color: rgba(244,241,235,0.15)">
+        <div class="text-base leading-relaxed" style="color: rgba(244,241,235,0.6)">— The Halftone team<br>Brooklyn, NY · January 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 014 — CONTACT -->
+<section id="contact" class="border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+    <div class="grid grid-cols-12 gap-8 lg:gap-16">
+      <div class="col-span-12 lg:col-span-5 reveal">
+        <div class="label mb-4">014 — Start a conversation</div>
+        <h2 class="text-[40px] lg:text-[52px] tracking-[-0.025em] leading-[1.02] font-medium mb-8">
+          Tell us what's<br>
+          <span class="serif-i font-normal text-accent">not working.</span>
+        </h2>
+        <p class="text-base text-muted leading-[1.6] mb-10 max-w-[400px]">
+          We respond to every serious inquiry within 4 business hours. Strategy calls are 30 minutes — we come with questions, not a pitch.
+        </p>
+
+        <div class="space-y-4 pt-8 border-t hairline">
+          <div class="flex items-baseline justify-between py-1">
+            <span class="mono text-[11px] text-muted tracking-wider">EMAIL</span>
+            <a href="mailto:hello@halftone.studio" class="text-[15px] ulink">hello@halftone.studio</a>
+          </div>
+          <div class="flex items-baseline justify-between py-1">
+            <span class="mono text-[11px] text-muted tracking-wider">PHONE</span>
+            <a href="tel:+17185550199" class="text-[15px] ulink">+1 (718) 555-0199</a>
+          </div>
+          <div class="flex items-baseline justify-between py-1">
+            <span class="mono text-[11px] text-muted tracking-wider">STUDIO</span>
+            <span class="text-[15px]">68 Jay St, Brooklyn, NY 11201</span>
+          </div>
+          <div class="flex items-baseline justify-between py-1">
+            <span class="mono text-[11px] text-muted tracking-wider">HOURS</span>
+            <span class="text-[15px]">Mon–Fri · 9AM–6PM EST</span>
+          </div>
+        </div>
+
+        <div class="mt-10 pt-6 border-t hairline">
+          <div class="mono text-[11px] text-muted mb-2 tracking-wider">NEXT AVAILABLE START DATE</div>
+          <div class="text-2xl tracking-tight font-medium">March 17, 2025</div>
+          <div class="text-sm text-muted mt-1">For engagements starting Q1 2025. Q2 is booking now.</div>
+        </div>
+      </div>
+
+      <div class="col-span-12 lg:col-span-7 reveal reveal-1">
+        <form class="border hairline p-6 lg:p-10 bg-[var(--paper)]" onsubmit="handleSubmit(event)">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-8">
+            <div>
+              <label class="mono text-[11px] text-muted mb-2 block tracking-wider">NAME *</label>
+              <input type="text" class="form-input" placeholder="Jane Doe" required>
+            </div>
+            <div>
+              <label class="mono text-[11px] text-muted mb-2 block tracking-wider">WORK EMAIL *</label>
+              <input type="email" class="form-input" placeholder="jane@company.com" required>
+            </div>
+            <div>
+              <label class="mono text-[11px] text-muted mb-2 block tracking-wider">COMPANY</label>
+              <input type="text" class="form-input" placeholder="Acme Inc.">
+            </div>
+            <div>
+              <label class="mono text-[11px] text-muted mb-2 block tracking-wider">BUDGET RANGE</label>
+              <select class="form-input bg-transparent">
+                <option>$25k — $50k</option>
+                <option selected>$50k — $100k</option>
+                <option>$100k — $200k</option>
+                <option>$200k+</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="col-span-2">
+              <label class="mono text-[11px] text-muted mb-2 block tracking-wider">WHAT ARE YOU TRYING TO FIX? *</label>
+              <textarea rows="4" class="form-input resize-none" placeholder="Our site converts at 1.2%. We need to be at 3% before our Series B raise in Q3. The current build is on Webflow and our team can't maintain it." required></textarea>
+            </div>
+          </div>
+          <div class="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t hairline-2">
+            <p class="text-xs text-muted max-w-xs leading-snug">By submitting, you agree to our privacy policy. We'll never share your information.</p>
+            <button type="submit" class="btn-accent px-6 py-3.5 text-[15px] font-medium inline-flex items-center gap-2">
+              Send inquiry
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-ink text-[var(--bone)]">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 pt-16 lg:pt-20 pb-10">
+    <div class="grid grid-cols-12 gap-8 mb-16">
+      <div class="col-span-12 lg:col-span-5">
+        <div class="flex items-center gap-2.5 mb-6">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="1.4"/>
+            <circle cx="11" cy="11" r="4" fill="var(--accent)"/>
+          </svg>
+          <span class="text-[20px] font-medium tracking-tight">Halftone</span>
+        </div>
+        <p class="text-base max-w-[400px] leading-[1.55]" style="color: rgba(244,241,235,0.6)">
+          A twelve-person B2B web design and development studio. We build sites that earn their budget back — usually within the first 90 days.
+        </p>
+        <div class="mt-8 flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent live-dot"></span>
+          <span class="mono text-[11px] tracking-wider" style="color: rgba(244,241,235,0.6)">4 SLOTS OPEN FOR Q1 2025</span>
+        </div>
+      </div>
+
+      <div class="col-span-6 lg:col-span-2 lg:col-start-7">
+        <div class="mono text-[11px] mb-5 tracking-wider" style="color: rgba(244,241,235,0.4)">SERVICES</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Custom Websites</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Shopify</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">WooCommerce</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Landing Pages</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">CMS</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Web Apps</a></li>
+        </ul>
+      </div>
+      <div class="col-span-6 lg:col-span-2">
+        <div class="mono text-[11px] mb-5 tracking-wider" style="color: rgba(244,241,235,0.4)">STUDIO</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Work</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Process</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Team</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Journal</a></li>
+          <li><a href="#" class="ulink" style="color: rgba(244,241,235,0.85)">Careers</a></li>
+        </ul>
+      </div>
+      <div class="col-span-12 lg:col-span-2">
+        <div class="mono text-[11px] mb-5 tracking-wider" style="color: rgba(244,241,235,0.4)">CONTACT</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="mailto:hello@halftone.studio" class="ulink" style="color: rgba(244,241,235,0.85)">hello@halftone.studio</a></li>
+          <li><a href="tel:+17185550199" class="ulink" style="color: rgba(244,241,235,0.85)">+1 (718) 555-0199</a></li>
+          <li style="color: rgba(244,241,235,0.85)">68 Jay St, Brooklyn</li>
+          <li style="color: rgba(244,241,235,0.6)" class="pt-2">Mon–Fri · 9–6 EST</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="py-12 border-t border-b" style="border-color: rgba(244,241,235,0.12)">
+      <div class="big-word">Halftone</div>
+    </div>
+
+    <div class="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="mono text-[11px] tracking-wider" style="color: rgba(244,241,235,0.4)">
+        © 2025 HALFTONE STUDIO LLC · B-CORP CERTIFIED · MADE IN BROOKLYN
+      </div>
+      <div class="flex items-center gap-6 text-xs" style="color: rgba(244,241,235,0.5)">
+        <a href="#" class="ulink">Privacy</a>
+        <a href="#" class="ulink">Terms</a>
+        <a href="#" class="ulink">Accessibility</a>
+        <a href="#" class="ulink">Clutch</a>
+        <a href="#" class="ulink">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Stat counter
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseFloat(el.dataset.target);
+        const decimals = parseInt(el.dataset.decimals) || 0;
+        const duration = 1800;
+        const start = performance.now();
+
+        function step(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = target * eased;
+          el.textContent = current.toFixed(decimals);
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target.toFixed(decimals);
+        }
+        requestAnimationFrame(step);
+        statObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.stat-num').forEach(el => statObserver.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      // Optional: close others
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Sent — we\'ll reply within 4 hours';
+    btn.disabled = true;
+    btn.style.background = 'var(--ink-2)';
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      btn.style.background = '';
+      e.target.reset();
+    }, 3500);
+  }
+
+  // Live clock for top bar (subtle, premium touch)
+  function updateClock() {
+    const now = new Date();
+    const estTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    const hours = estTime.getHours();
+    const mins = estTime.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+    const clockEl = document.querySelector('[data-clock]');
+    if (clockEl) {
+      clockEl.textContent = `BROOKLYN, NY · ${displayHours}:${mins} ${ampm} EST`;
+    }
+  }
+  // Add data-clock attribute to the time span
+  const timeSpan = document.querySelectorAll('.mono.text-\\[11px\\].text-muted')[0];
+  if (timeSpan && timeSpan.textContent.includes('BROOKLYN')) {
+    timeSpan.setAttribute('data-clock', '');
+    updateClock();
+    setInterval(updateClock, 30000);
+  }
+</script>
+</body>
+</html>
