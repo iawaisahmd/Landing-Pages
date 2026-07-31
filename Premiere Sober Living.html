@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premiere Sober Living - Transitional Housing & Recovery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Typography Tokens */
+            --font-family-primary: 'Lora', serif;
+            --font-size-base: 16px;
+            --font-weight-base: 400;
+            --font-line-height-base: 1.6;
+            --font-size-xs: 12px;
+            --font-size-sm: 13px;
+            --font-size-md: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 22px;
+            --font-size-3xl: 32px;
+            --font-size-4xl: 52px;
+
+            /* Color Palette (Strictly Enforced) */
+            --color-text-primary: #6d787d; /* Used for secondary text */
+            --color-surface-base: #000000; /* Hero/Footer background */
+            --color-text-tertiary: #1b1b1b; /* Main headings on light */
+            --color-text-inverse: #5e5e5e; 
+            --color-surface-muted: #ffffff; /* Main background */
+            --color-surface-raised: #cccccc; /* Borders, subtle elements */
+            --color-surface-strong: #dce1e3; /* Alternate section background */
+            
+            /* Accessibility Additions for WCAG AA */
+            --color-text-on-dark: #ffffff; 
+            --color-text-on-light: #1b1b1b;
+            --color-accent: #1b1b1b;
+            --color-focus-ring: #0048ff;
+
+            /* Spacing Scale */
+            --space-1: 4px;
+            --space-2: 6px;
+            --space-3: 8px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 30px;
+            --space-7: 32px;
+            --space-8: 40px;
+            --space-9: 64px; /* Added for larger section breaks */
+
+            /* Radius, Shadow, Motion */
+            --radius-xs: 58px;
+            --shadow-1: rgba(0, 0, 0, 0.2) 0px 3px 3px 0px;
+            --shadow-2: rgba(0, 0, 0, 0.08) 0px 10px 30px 0px; /* Enhanced for depth */
+            --motion-duration-instant: 200ms;
+            --motion-duration-fast: 500ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-base);
+            line-height: var(--font-line-height-base);
+            color: var(--color-text-on-light);
+            background-color: var(--color-surface-muted);
+            overflow-x: hidden;
+        }
+
+        /* Accessibility: Focus Visible - Must be highly visible */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--color-focus-ring);
+            outline-offset: 3px;
+            border-radius: var(--space-1);
+            transition: outline-offset var(--motion-duration-instant) ease;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .section {
+            padding: var(--space-9) 0;
+            position: relative;
+        }
+
+        .text-center { text-align: center; }
+        .bg-dark { background-color: var(--color-surface-base); color: var(--color-text-on-dark); }
+        .bg-light { background-color: var(--color-surface-muted); color: var(--color-text-on-light); }
+        .bg-strong { background-color: var(--color-surface-strong); color: var(--color-text-on-light); }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: inherit;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-primary);
+            max-width: 600px;
+            margin: 0 auto var(--space-8);
+        }
+
+        .bg-dark .section-subtitle { color: var(--color-surface-raised); }
+
+        /* Header / Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: padding var(--motion-duration-instant) ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4) 0;
+        }
+
+        .logo {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-text-tertiary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .logo span {
+            width: 12px;
+            height: 12px;
+            background-color: var(--color-text-tertiary);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-6);
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-primary);
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            transition: color var(--motion-duration-instant) ease;
+            padding: var(--space-2) 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text-tertiary);
+            border-bottom-color: var(--color-text-tertiary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: var(--font-size-2xl);
+            color: var(--color-text-tertiary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-4) var(--space-7);
+            background-color: var(--color-surface-base);
+            color: var(--color-text-on-dark);
+            border: 2px solid var(--color-surface-base);
+            border-radius: var(--radius-xs);
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-md);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--motion-duration-instant) ease;
+            box-shadow: var(--shadow-1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-surface-base);
+            border-color: var(--color-surface-base);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-surface-base);
+            color: var(--color-text-on-dark);
+        }
+
+        .btn-light {
+            background-color: var(--color-surface-muted);
+            color: var(--color-surface-base);
+            border-color: var(--color-surface-muted);
+        }
+
+        .btn-light:hover {
+            background-color: transparent;
+            color: var(--color-text-on-dark);
+            border-color: var(--color-text-on-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: var(--space-9) var(--space-4);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            animation: slowZoom 20s infinite alternate;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85));
+            z-index: -1;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: var(--font-size-4xl);
+            color: var(--color-text-on-dark);
+            margin-bottom: var(--space-5);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: var(--font-size-xl);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--space-7);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Stats Section */
+        .stats-bar {
+            background-color: var(--color-surface-base);
+            color: var(--color-text-on-dark);
+            padding: var(--space-8) 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: var(--font-size-4xl);
+            color: var(--color-surface-muted);
+            margin-bottom: var(--space-2);
+        }
+
+        .stat-item p {
+            font-size: var(--font-size-md);
+            color: var(--color-surface-raised);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cards & Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .card {
+            background-color: var(--color-surface-muted);
+            border-radius: var(--radius-xs);
+            box-shadow: var(--shadow-1);
+            padding: var(--space-7);
+            transition: transform var(--motion-duration-fast) ease, box-shadow var(--motion-duration-fast) ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-surface-strong);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-5);
+            font-size: 24px;
+            color: var(--color-text-tertiary);
+        }
+
+        .card h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-3);
+            color: var(--color-text-tertiary);
+        }
+
+        .card p {
+            color: var(--color-text-primary);
+            font-size: var(--font-size-base);
+        }
+
+        /* Split Layout (About) */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .split-image {
+            border-radius: var(--radius-xs);
+            overflow: hidden;
+            box-shadow: var(--shadow-2);
+            aspect-ratio: 4/3;
+        }
+
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--motion-duration-fast) ease;
+        }
+
+        .split-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .split-content h2 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-5);
+        }
+
+        .split-content p {
+            margin-bottom: var(--space-5);
+            font-size: var(--font-size-lg);
+            color: var(--color-text-primary);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: var(--space-6);
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            font-weight: 500;
+            color: var(--color-text-tertiary);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background-color: var(--color-surface-base);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Process / Steps Section */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            position: relative;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-surface-muted);
+            color: var(--color-surface-base);
+            border: 2px solid var(--color-surface-base);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin: 0 auto var(--space-5);
+            position: relative;
+            z-index: 2;
+            transition: all var(--motion-duration-instant) ease;
+        }
+
+        .process-step:hover .step-number {
+            background-color: var(--color-surface-base);
+            color: var(--color-text-on-dark);
+            transform: scale(1.1);
+        }
+
+        .process-step h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-3);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background-color: var(--color-surface-muted);
+            border-radius: var(--radius-xs);
+            padding: var(--space-7);
+            box-shadow: var(--shadow-1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '“';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 80px;
+            color: var(--color-surface-strong);
+            font-family: serif;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .testimonial-text {
+            font-size: var(--font-size-lg);
+            font-style: italic;
+            color: var(--color-text-tertiary);
+            margin-bottom: var(--space-5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background-color: var(--color-surface-strong);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--color-text-tertiary);
+        }
+
+        .author-info h4 {
+            font-size: var(--font-size-md);
+            margin: 0;
+        }
+
+        .author-info p {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-primary);
+            margin: 0;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--color-surface-muted);
+            border-radius: var(--space-4);
+            margin-bottom: var(--space-4);
+            box-shadow: var(--shadow-1);
+            overflow: hidden;
+            transition: box-shadow var(--motion-duration-instant) ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-2);
+        }
+
+        .faq-question {
+            padding: var(--space-5) var(--space-6);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-text-tertiary);
+            list-style: none;
+        }
+
+        .faq-question::-webkit-details-marker { display: none; }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            transition: transform var(--motion-duration-instant) ease;
+        }
+
+        .faq-item[open] .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 var(--space-6) var(--space-5);
+            color: var(--color-text-primary);
+            font-size: var(--font-size-base);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--color-surface-base);
+            color: var(--color-text-on-dark);
+            text-align: center;
+            border-radius: var(--radius-xs);
+            padding: var(--space-9) var(--space-6);
+            margin: var(--space-8) 0;
+            box-shadow: var(--shadow-2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-4);
+        }
+
+        .cta-section p {
+            font-size: var(--font-size-lg);
+            max-width: 600px;
+            margin: 0 auto var(--space-6);
+            color: var(--color-surface-raised);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-surface-base);
+            color: var(--color-text-on-dark);
+            padding: var(--space-9) 0 var(--space-6);
+            margin-top: var(--space-9);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .footer-col h4 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-4);
+            color: var(--color-surface-muted);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: var(--space-3);
+        }
+
+        .footer-col a {
+            color: var(--color-surface-raised);
+            text-decoration: none;
+            transition: color var(--motion-duration-instant);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-surface-muted);
+            text-decoration: underline;
+        }
+
+        .footer-col p {
+            color: var(--color-surface-raised);
+            margin-bottom: var(--space-3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-6);
+            border-top: 1px solid #333;
+            font-size: var(--font-size-sm);
+            color: #888;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity var(--motion-duration-fast) ease, transform var(--motion-duration-fast) ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-surface-muted);
+                padding: var(--space-6);
+                box-shadow: var(--shadow-2);
+                gap: var(--space-4);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: var(--font-size-3xl);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-col ul {
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><span></span> Premiere Sober Living</a>
+                <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#living">Structured Living</a></li>
+                    <li><a href="#process">Admissions</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact" class="btn btn-outline" style="padding: 8px 24px;">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>A Safe Haven for Sustainable Recovery</h1>
+                <p>Premiere Sober Living provides top-tier transitional housing and comprehensive support services, guiding individuals in early recovery with dignity and accountability.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-light">Begin Your Journey</a>
+                    <a href="#about" class="btn btn-outline" style="color: white; border-color: white;">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-bar">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item reveal">
+                        <h3>100+</h3>
+                        <p>Beds Available</p>
+                    </div>
+                    <div class="stat-item reveal">
+                        <h3>8+</h3>
+                        <p>Years of Service</p>
+                    </div>
+                    <div class="stat-item reveal">
+                        <h3>NARR</h3>
+                        <p>Certified Provider</p>
+                    </div>
+                    <div class="stat-item reveal">
+                        <h3>24/7</h3>
+                        <p>Support & Monitoring</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Mission Section -->
+        <section id="about" class="section bg-light">
+            <div class="container">
+                <div class="split-layout">
+                    <div class="split-image reveal">
+                        <img src="https://images.unsplash.com/photo-1516574187841-69301976e499?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Supportive community environment">
+                    </div>
+                    <div class="split-content reveal">
+                        <h2>Our Mission & Approach</h2>
+                        <p>We create a new sober living environment that treats every individual with dignity and respect. Our trauma-informed approach holds each guest to the highest level of accountability while providing the support needed for lasting recovery.</p>
+                        <ul class="feature-list">
+                            <li>Trauma-informed care model</li>
+                            <li>Comprehensive support services</li>
+                            <li>Safe, structured environment</li>
+                            <li>Peer community support</li>
+                        </ul>
+                        <a href="#contact" class="btn">Get Help Today</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structured Living Section -->
+        <section id="living" class="section bg-strong">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title reveal">Structured Sober Living</h2>
+                    <p class="section-subtitle reveal">Clear expectations and supportive frameworks designed to foster personal growth and lasting sobriety.</p>
+                </div>
+                
+                <div class="grid">
+                    <div class="card reveal">
+                        <div class="card-icon">⏰</div>
+                        <h3>Accountability Checks</h3>
+                        <p>Regular check-ins and late-return protocols to ensure safety and structure for all residents.</p>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-icon">🧪</div>
+                        <h3>Drug Testing</h3>
+                        <p>Random drug screening to maintain a secure, substance-free environment conducive to healing.</p>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-icon">🤝</div>
+                        <h3>Community Engagement</h3>
+                        <p>Mandatory house meetings and peer support groups to foster a sense of belonging.</p>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-icon">🧠</div>
+                        <h3>Mental Health Support</h3>
+                        <p>Access to counseling and mental health resources to address underlying causes of addiction.</p>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-icon">💼</div>
+                        <h3>Life Skills Development</h3>
+                        <p>Workshops on budgeting, resume building, and job interview preparation for independent living.</p>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-icon">🏋️</div>
+                        <h3>Health & Wellness</h3>
+                        <p>CrossFit level 1 training and fitness programs to promote physical well-being as part of recovery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admissions Process Section -->
+        <section id="process" class="section bg-light">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title reveal">Our Admissions Process</h2>
+                    <p class="section-subtitle reveal">A simple, supportive path to joining our recovery community.</p>
+                </div>
+
+                <div class="process-grid">
+                    <div class="process-step reveal">
+                        <div class="step-number">1</div>
+                        <h3>Initial Contact</h3>
+                        <p>Reach out via phone or email. Our compassionate team will listen to your needs.</p>
+                    </div>
+                    <div class="process-step reveal">
+                        <div class="step-number">2</div>
+                        <h3>Assessment</h3>
+                        <p>A brief screening to ensure our environment is the right fit for your recovery journey.</p>
+                    </div>
+                    <div class="process-step reveal">
+                        <div class="step-number">3</div>
+                        <h3>Move-In</h3>
+                        <p>Complete paperwork, review house rules, and settle into your new supportive home.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section bg-strong">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title reveal">Stories of Hope</h2>
+                    <p class="section-subtitle reveal">Real experiences from individuals who rebuilt their lives at Premiere Sober Living.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="testimonial-card reveal">
+                        <p class="testimonial-text">"Premiere Sober Living gave me the structure I desperately needed. The staff truly cares, and the community helped me find myself again."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <h4>John D.</h4>
+                                <p>Alumnus, 2 Years Sober</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal">
+                        <p class="testimonial-text">"The trauma-informed approach made all the difference. I felt safe for the first time in years. Highly recommend to anyone serious about recovery."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SM</div>
+                            <div class="author-info">
+                                <h4>Sarah M.</h4>
+                                <p>Current Resident</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal">
+                        <p class="testimonial-text">"As a parent, finding NARR certified housing was crucial. Premiere provided the accountability and support my son needed to thrive."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RK</div>
+                            <div class="author-info">
+                                <h4>Robert K.</h4>
+                                <p>Family Member</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section bg-light">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title reveal">Frequently Asked Questions</h2>
+                    <p class="section-subtitle reveal">Everything you need to know about our sober living community.</p>
+                </div>
+
+                <div class="faq-container">
+                    <details class="faq-item reveal" open>
+                        <summary class="faq-question">What is the cost of living at Premiere Sober Living?</summary>
+                        <div class="faq-answer">Costs vary depending on the specific house and room type. We work to keep rates affordable while maintaining high-quality facilities. Please contact us for specific pricing information.</div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary class="faq-question">Are you a certified sober living facility?</summary>
+                        <div class="faq-answer">Yes, we are officially certified through MHACBO and are a NARR (National Alliance for Recovery Residences) certified provider, ensuring the highest standards of care and safety.</div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary class="faq-question">What are the house rules?</summary>
+                        <div class="faq-answer">Rules include mandatory house meetings, regular drug testing, adherence to curfews, and participation in a recovery program. A full list of rules is provided during the intake process.</div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary class="faq-question">Do you provide treatment programs?</summary>
+                        <div class="faq-answer">We provide transitional housing and comprehensive support services. While we do not provide direct medical treatment, we have strong roots in the local recovery community and can connect you with outpatient programs.</div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="container" style="padding: 0;">
+            <div class="cta-section reveal">
+                <h2>Ready to Take the Next Step?</h2>
+                <p>Our team is available 24/7 to answer your questions and guide you through the admissions process. You don't have to do this alone.</p>
+                <a href="#contact" class="btn btn-light">Contact Us Today</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Premiere Sober Living</h4>
+                    <p>Providing highest quality transitional housing and comprehensive support services to individuals in early recovery.</p>
+                    <div style="margin-top: 16px; display: flex; gap: 12px;">
+                        <a href="#" aria-label="Facebook" style="font-size: 20px;">FB</a>
+                        <a href="#" aria-label="LinkedIn" style="font-size: 20px;">LI</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>503-660-6819</li>
+                        <li>troy@premieresoberliving.com</li>
+                        <li>Happy Valley, OR</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#living">Structured Living</a></li>
+                        <li><a href="#process">Admissions</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Certifications</h4>
+                    <ul>
+                        <li>NARR Certified</li>
+                        <li>MHACBO Certified</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Premiere Sober Living. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+        });
+
+        // Scroll Reveal Animation with Stagger
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add a slight delay based on index for staggered effect within the same container
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, index * 50); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+</body>
+</html>
