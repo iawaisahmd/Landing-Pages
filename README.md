@@ -2,7 +2,7 @@
 
 A collection of clean, responsive landing page templates designed for various marketing campaigns, product launches, and personal portfolios.
 
-## 📁 Project Structure
+## 📁 Project Structure here
 
 - `arkde mock 1.html` – A modern, visually striking landing page mockup for a startup/product named "Arkde".
 - `get1.html` – A minimalist lead generation or product offering page.
